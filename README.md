@@ -1,7 +1,7 @@
 IntTrader
 =============================
 
-IntTrader is the implementation of the IntTrader.API and the target of IntTrader.API is to be a unified API for all Crypto Coin Markets. It features all the abstraction machanisms to implement another Exchange without alot effort.
+IntTrader is the front end and implementation of the IntTrader.API and the target of IntTrader.API is to be a unified API for all Crypto Coin Markets. It features all the abstraction machanisms to implement another Exchange without alot effort.
 
 The following Exchanges are partially implemented right now. I kept focus on basic functionality.
 
