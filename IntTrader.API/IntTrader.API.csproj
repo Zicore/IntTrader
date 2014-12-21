@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4221C6B6-371F-43AB-AC22-5B5387666FB1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntTrader.API</RootNamespace>
+    <AssemblyName>IntTrader.API</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\Request\RequestBase.cs" />
+    <Compile Include="Base\Request\RequestMonitor.cs" />
+    <Compile Include="Base\Response\ResponseBase.cs" />
+    <Compile Include="Base\Response\ResponseData.cs" />
+    <Compile Include="Base\Transform\ICancelOrder.cs" />
+    <Compile Include="Base\Transform\ITrades.cs" />
+    <Compile Include="Converter\DecimalRounding.cs" />
+    <Compile Include="Currency\CurrencyBase.cs" />
+    <Compile Include="Base\Transform\IBalanceEntry.cs" />
+    <Compile Include="Base\Transform\IOrderBookEntry.cs" />
+    <Compile Include="Base\Transform\IOrder.cs" />
+    <Compile Include="Base\Transform\IOrderNew.cs" />
+    <Compile Include="Base\Transform\IOrders.cs" />
+    <Compile Include="Base\Transform\ITicker.cs" />
+    <Compile Include="Currency\PairManager.cs" />
+    <Compile Include="Currency\PairBase.cs" />
+    <Compile Include="Converter\DateTimeConverter.cs" />
+    <Compile Include="Converter\DecimalConverter.cs" />
+    <Compile Include="Event\RequestEventArgs.cs" />
+    <Compile Include="Exceptions\CurrencyNotSupported.cs" />
+    <Compile Include="Exceptions\PairNotSupportedException.cs" />
+    <Compile Include="Base\Transform\IBalance.cs" />
+    <Compile Include="Base\Transform\IOrderBook.cs" />
+    <Compile Include="Base\Exchange\Base\ExchangeType.cs" />
+    <Compile Include="Base\Exchange\Orders\OrderSide.cs" />
+    <Compile Include="Base\Exchange\Orders\OrderType.cs" />
+    <Compile Include="Base\Exchange\Base\TypeBase.cs" />
+    <Compile Include="Base\Exchange\ExchangeManager.cs" />
+    <Compile Include="Base\Exchange\Base\ExchangeBase.cs" />
+    <Compile Include="Base\Model\BalanceModel.cs" />
+    <Compile Include="Base\Model\CancelOrderModel.cs" />
+    <Compile Include="Base\Model\ResponseModelBase.cs" />
+    <Compile Include="Base\Model\OrderBookEntryModel.cs" />
+    <Compile Include="Base\Model\OrderBookModel.cs" />
+    <Compile Include="Base\Model\CreateOrderModel.cs" />
+    <Compile Include="Base\Model\OpenOrdersModel.cs" />
+    <Compile Include="Base\Model\OpenOrderEntryModel.cs" />
+    <Compile Include="Base\Settings\ExchangeAPI.cs" />
+    <Compile Include="Base\Settings\SettingsBase.cs" />
+    <Compile Include="Base\Model\TickerModel.cs" />
+    <Compile Include="Base\Model\TradesEntryModel.cs" />
+    <Compile Include="Base\Model\TradesModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Base\Request\CreateOrderRequest.cs" />
+    <Compile Include="Base\Request\CancelOrderRequest.cs" />
+    <Compile Include="Threading\LockFreeQueue.cs" />
+    <Compile Include="Threading\RequestHandler.cs" />
+    <Compile Include="Web\GetRequest.cs" />
+    <Compile Include="Web\WebClientExtended.cs">
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base\Model\BalanceEntryModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zicore.Settings.Json\Zicore.Settings.Json.csproj">
+      <Project>{831d83a0-7348-4d8c-9857-7b336f7d91ea}</Project>
+      <Name>Zicore.Settings.Json</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

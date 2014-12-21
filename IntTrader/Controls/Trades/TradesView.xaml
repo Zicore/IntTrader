@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="IntTrader.Controls.Trades.TradesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:trades="clr-namespace:IntTrader.Controls.Trades"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" d:DataContext="{d:DesignInstance trades:TradesViewModel}">
+
+    <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource LightBrush}" Background="Black">
+        <Grid>
+
+            <ListView ItemsSource="{Binding Items}" BorderThickness="0" x:Name="List">
+                <ListView.Resources>
+
+
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderCollapsed}">
+                        <GridViewColumn Width="Auto" Header="Timestamp">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="1,1,1,1">
+                                        <TextBlock FontFamily="Consolas" Text="{Binding TimestampFormat}">
+
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="Auto" Header="Price">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="1,1,1,1">
+                                        <TextBlock FontFamily="Consolas" Text="{Binding Price}">
+                                            <TextBlock.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsBuyOrder}" Value="true">
+                                                            <Setter Property="TextBlock.Foreground" Value="#FF00FF03"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsBuyOrder}" Value="false">
+                                                            <Setter Property="TextBlock.Foreground" Value="#FFD70000"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <GridViewColumn Width="Auto" Header="Amount">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="1,1,1,1">
+                                        <TextBlock FontFamily="Consolas" Text="{Binding Amount}">
+                                            <TextBlock.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsBuyOrder}" Value="true">
+                                                            <Setter Property="TextBlock.Foreground" Value="#FF00FF03"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsBuyOrder}" Value="false">
+                                                            <Setter Property="TextBlock.Foreground" Value="#FFD70000"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Border>
+</UserControl>

@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DC3F5F43-D44A-4BD4-A536-986049BB6DDD}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntTrader</RootNamespace>
+    <AssemblyName>IntTrader</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>bitcoin.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controls\Balance\Balance.xaml.cs">
+      <DependentUpon>Balance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Blockchain\Address\AddressItemViewModel.cs" />
+    <Compile Include="Controls\Blockchain\Address\AddressView.xaml.cs">
+      <DependentUpon>AddressView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Blockchain\Address\AddressViewModel.cs" />
+    <Compile Include="Controls\CommandToolBar\CommandToolBarView.xaml.cs">
+      <DependentUpon>CommandToolBarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CommandToolBar\CommandToolBarViewModel.cs" />
+    <Compile Include="Controls\Dashboard\DashboardEntryViewModel.cs" />
+    <Compile Include="Controls\Dashboard\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Dashboard\DashboardViewModel.cs" />
+    <Compile Include="Controls\Exchange\ExchangeView.xaml.cs">
+      <DependentUpon>ExchangeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Exchange\ExchangeViewModel.cs" />
+    <Compile Include="Controls\NewOrder\NewBuyOrderView.xaml.cs">
+      <DependentUpon>NewBuyOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NewOrder\NewSellOrderView.xaml.cs">
+      <DependentUpon>NewSellOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Request\RequestEntryViewModel.cs" />
+    <Compile Include="Controls\Request\RequestView.xaml.cs">
+      <DependentUpon>RequestView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Request\RequestViewModel.cs" />
+    <Compile Include="Controls\Trades\TradesEntryViewModel.cs" />
+    <Compile Include="Controls\Trades\TradesView.xaml.cs">
+      <DependentUpon>TradesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Trades\TradesViewModel.cs" />
+    <Compile Include="Service\ApplicationSettingsService.cs" />
+    <Compile Include="Service\UpdateController.cs" />
+    <Compile Include="Service\UpdateEntry.cs" />
+    <Compile Include="Controls\ExchangeSettings\ExchangeSettingsEntryViewModel.cs" />
+    <Compile Include="Controls\ExchangeSettings\ExchangeSettingsView.xaml.cs">
+      <DependentUpon>ExchangeSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ExchangeSettings\ExchangeSettingsViewModel.cs" />
+    <Compile Include="Controls\Balance\BalanceEntryViewModel.cs" />
+    <Compile Include="Controls\Balance\BalanceViewModel.cs" />
+    <Compile Include="Settings\AppSettings.cs" />
+    <Compile Include="Settings\AppSettingsBase.cs" />
+    <Compile Include="Settings\Data\AddressEntry.cs" />
+    <Compile Include="Dialogs\Password\CreatePasswordViewModel.cs" />
+    <Compile Include="ViewModel\ExchangeViewModelBase.cs" />
+    <Compile Include="Dialogs\Password\LoginViewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="Controls\NewOrder\NewOrderViewModel.cs" />
+    <Compile Include="Controls\OrderBook\OrderBookEntry.cs" />
+    <Compile Include="Controls\OrderBook\OrderBookViewModel.cs" />
+    <Compile Include="Service\ExchangeSettingsService.cs" />
+    <Compile Include="Controls\UserOrders\UserOrdersViewModel.cs" />
+    <Compile Include="Controls\UserOrders\OrderViewModel.cs" />
+    <Compile Include="ViewModel\PrefixSuffixEntry.cs" />
+    <Compile Include="ViewModel\PairManageViewModel.cs" />
+    <Compile Include="ViewModel\PairViewModel.cs" />
+    <Compile Include="Controls\Ticker\TickerViewModel.cs" />
+    <Compile Include="ViewModel\ExchangeManagerViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="Controls\OrderBook\LastTrade.xaml.cs">
+      <DependentUpon>LastTrade.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OrderBook\OrderListBids.xaml.cs">
+      <DependentUpon>OrderListBids.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OrderBook\OrderBook.xaml.cs">
+      <DependentUpon>OrderBook.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OrderBook\OrderListAsks.xaml.cs">
+      <DependentUpon>OrderListAsks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\UserOrders\UserOrderView.xaml.cs">
+      <DependentUpon>UserOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Ticker\Ticker.xaml.cs">
+      <DependentUpon>Ticker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Password\CreatePassword.xaml.cs">
+      <DependentUpon>CreatePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\Password\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\Balance\Balance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Blockchain\Address\AddressView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\CommandToolBar\CommandToolBarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Dashboard\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Exchange\ExchangeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NewOrder\NewBuyOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\NewOrder\NewSellOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\ExchangeSettings\ExchangeSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Request\RequestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Trades\TradesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\BasicResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Resources\BalanceResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\OrderBookResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\ExpressionDark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ScrollViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OrderBook\LastTrade.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OrderBook\OrderListBids.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\OrderBook\OrderBook.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OrderBook\OrderListAsks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\UserOrders\UserOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\Ticker\Ticker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Password\CreatePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\Password\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IntTrader.API.Blockchain\IntTrader.API.Blockchain.csproj">
+      <Project>{9C70D588-0EAC-4C5D-B384-CAFA8CEEDF45}</Project>
+      <Name>IntTrader.API.Blockchain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntTrader.API\IntTrader.API.csproj">
+      <Project>{4221c6b6-371f-43ab-ac22-5b5387666fb1}</Project>
+      <Name>IntTrader.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntTrader.Exchange.Bitfinex\IntTrader.API.Bitfinex.Exchange.csproj">
+      <Project>{197032df-db20-459b-a0b3-c387e640f39a}</Project>
+      <Name>IntTrader.API.Bitfinex.Exchange</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntTrader.ExchangeLoader\IntTrader.API.ExchangeLoader.csproj">
+      <Project>{caf30234-6645-48e6-b0e7-aa7d23e0d434}</Project>
+      <Name>IntTrader.API.ExchangeLoader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntTrader.Kraken.Exchange\IntTrader.API.Kraken.Exchange.csproj">
+      <Project>{c5a21196-1b23-408a-bc32-a9219dfc4827}</Project>
+      <Name>IntTrader.API.Kraken.Exchange</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zicore.Security\Zicore.Security.csproj">
+      <Project>{48c98f71-2210-4806-8ed3-6aeed2729801}</Project>
+      <Name>Zicore.Security</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zicore.Settings.Json\Zicore.Settings.Json.csproj">
+      <Project>{831D83A0-7348-4D8C-9857-7B336F7D91EA}</Project>
+      <Name>Zicore.Settings.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zicore.WPF.Base\Zicore.WPF.Base.csproj">
+      <Project>{6970FA5A-5ACA-46F9-8EE3-B1E256FBB463}</Project>
+      <Name>Zicore.WPF.Base</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\AppSettings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bitcoin.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bitcoin.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bitcoin.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

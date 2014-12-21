@@ -1,0 +1,44 @@
+﻿<Window x:Class="IntTrader.Dialogs.Password.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:password="clr-namespace:IntTrader.Dialogs.Password"
+        Background="Black"
+        WindowStartupLocation="CenterScreen"
+        Title="Login" Height="130" Width="420" Icon="/IntTrader;component/bitcoin.ico">
+    <Window.DataContext>
+        <password:LoginViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Please enter the previously entered password to unlock your api keys." Grid.Column="0" Grid.ColumnSpan="3" TextWrapping="Wrap"></TextBlock>
+            <PasswordBox BorderBrush="White" Name="Password" Margin="4" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1"  PasswordChanged="Password_OnPasswordChanged">
+                <PasswordBox.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding ApplyCommand}"></KeyBinding>
+                </PasswordBox.InputBindings>
+            </PasswordBox>
+
+            <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Margin="4" Content="Cancel" Width="100" Command="{Binding CancelCommand}"></Button>
+                <Button Grid.Column="2" Margin="4" Content="Login" Width="100" Command="{Binding ApplyCommand}"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

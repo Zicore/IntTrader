@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DE8C4EBF-4D34-4E67-A3C1-023AF47D1AAD}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntTraderConsole</RootNamespace>
+    <AssemblyName>IntTraderConsole</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="websocket-sharp, Version=1.0.2.1082, Culture=neutral, PublicKeyToken=5660b08a1845a91e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebSocketSharp.1.0.3-rc2\lib\websocket-sharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\IntTrader.API.Blockchain\IntTrader.API.Blockchain.csproj">
+      <Project>{9c70d588-0eac-4c5d-b384-cafa8ceedf45}</Project>
+      <Name>IntTrader.API.Blockchain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntTrader.API\IntTrader.API.csproj">
+      <Project>{4221c6b6-371f-43ab-ac22-5b5387666fb1}</Project>
+      <Name>IntTrader.API</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntTrader.Exchange.Bitfinex\IntTrader.API.Bitfinex.Exchange.csproj">
+      <Project>{197032df-db20-459b-a0b3-c387e640f39a}</Project>
+      <Name>IntTrader.API.Bitfinex.Exchange</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntTrader.ExchangeLoader\IntTrader.API.ExchangeLoader.csproj">
+      <Project>{caf30234-6645-48e6-b0e7-aa7d23e0d434}</Project>
+      <Name>IntTrader.API.ExchangeLoader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IntTrader.Kraken.Exchange\IntTrader.API.Kraken.Exchange.csproj">
+      <Project>{c5a21196-1b23-408a-bc32-a9219dfc4827}</Project>
+      <Name>IntTrader.API.Kraken.Exchange</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

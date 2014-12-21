@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="IntTrader.Controls.CommandToolBar.CommandToolBarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="40">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Button Grid.Column="0" Margin="3" Command="{Binding Path=Settings.LoadCommand}">
+            <Button.Resources>
+                <Path x:Key="KeyIconPath" Margin="2" Data="{DynamicResource KeyIcon}" Stroke="White" StrokeThickness="1" Stretch="Uniform" Fill="Black" Width="Auto" Height="24" RenderTransformOrigin="0.5,0.5"></Path>
+                <Path x:Key="KeyIconUnlockedPath" Margin="2" Data="{DynamicResource KeyIcon}" Stroke="White" StrokeThickness="1" Stretch="Uniform" Fill="Gold" Width="Auto" Height="24" RenderTransformOrigin="0.5,0.5"></Path>
+
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}" >
+                    <Setter Property="Content" Value="{DynamicResource KeyIconPath}"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SettingsUnlocked}" Value="True">
+                            <Setter Property="Content" Value="{DynamicResource KeyIconUnlockedPath}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SettingsUnlocked}" Value="False">
+                            <Setter Property="Content" Value="{DynamicResource KeyIconPath}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</UserControl>

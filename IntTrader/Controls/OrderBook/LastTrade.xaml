@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="IntTrader.Controls.OrderBook.LastTrade"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="32" d:DesignWidth="300">
+    <Border BorderThickness="0,1,0,1" Background="Transparent" IsHitTestVisible="True">
+        <Border.InputBindings>
+            <MouseBinding Command="{Binding LastTradeClickCommand}" MouseAction="LeftClick" />
+        </Border.InputBindings>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock 
+                FontSize="18"
+                FontWeight="Bold"
+                FontFamily="Consolas"
+                Margin="0,2,0,2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Text="{Binding LastPrice}">
+                <TextBlock.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsAsk}" Value="true">
+                                <Setter Property="TextBlock.Foreground" Value="#FF00FF03"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsAsk}" Value="false">
+                                <Setter Property="TextBlock.Foreground" Value="#FFD70000"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </Grid>
+    </Border>
+</UserControl>

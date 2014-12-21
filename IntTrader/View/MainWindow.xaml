@@ -1,0 +1,53 @@
+﻿<Window x:Class="IntTrader.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:vm="clr-namespace:IntTrader.ViewModel"
+        xmlns:commandToolBar="clr-namespace:IntTrader.Controls.CommandToolBar"
+        xmlns:dashboard="clr-namespace:IntTrader.Controls.Dashboard"
+        xmlns:controls="clr-namespace:IntTrader.Controls.Exchange"
+        xmlns:settings="clr-namespace:IntTrader.Controls.ExchangeSettings"
+        xmlns:addresses="clr-namespace:IntTrader.Controls.Blockchain.Address"
+        xmlns:request="clr-namespace:IntTrader.Controls.Request"
+        Background="DimGray"
+        Window.Closing="MainWindow_OnClosing"
+        Loaded="MainWindow_OnLoaded"
+        Title="{Binding WindowText}" Height="700" Width="1300" Icon="/IntTrader;component/bitcoin.ico">
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+    
+    <Grid Background="Black">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <commandToolBar:CommandToolBarView Grid.Row="0" DataContext="{Binding CommandToolBarViewModel}"></commandToolBar:CommandToolBarView>
+
+        <TabControl Grid.Row="1" Margin="0" ItemsSource="{Binding Tabs}" SelectedIndex="0" SelectedItem="{Binding SelectedTab}" Background="Transparent">
+            <TabControl.Resources>
+                <DataTemplate DataType="{x:Type dashboard:DashboardViewModel}">
+                    <dashboard:DashboardView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type controls:ExchangeViewModel}">
+                    <controls:ExchangeView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type request:RequestViewModel}">
+                    <request:RequestView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type addresses:AddressViewModel}">
+                    <addresses:AddressView/>
+                </DataTemplate>
+                <DataTemplate DataType="{x:Type settings:ExchangeSettingsViewModel}">
+                    <settings:ExchangeSettingsView/>
+                </DataTemplate>
+
+            </TabControl.Resources>
+            <TabControl.ItemTemplate>
+                <DataTemplate DataType="vm:ViewModelBase">
+                    <TextBlock Text="{Binding Header}" FontSize="14" Foreground="{Binding Foreground}"></TextBlock>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+        </TabControl>
+    </Grid>
+</Window>

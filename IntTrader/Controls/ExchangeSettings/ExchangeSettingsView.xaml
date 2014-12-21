@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="IntTrader.Controls.ExchangeSettings.ExchangeSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:exchangeSettings="clr-namespace:IntTrader.Controls.ExchangeSettings"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600" d:DataContext="{d:DesignInstance exchangeSettings:ExchangeSettingsViewModel}">
+    <Grid Background="Transparent">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Background="Transparent">
+            <ListView ItemsSource="{Binding ExchangeSettings}" BorderThickness="0" HorizontalContentAlignment="Stretch">
+                
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="Auto">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="exchangeSettings:ExchangeSettingsEntryViewModel">
+                                    <TextBox MinWidth="120" FontFamily="Consolas" Text="{Binding Name}" IsReadOnly="True"></TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="API Key">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="exchangeSettings:ExchangeSettingsEntryViewModel">
+                                    <TextBox MinWidth="300" FontFamily="Consolas" Text="{Binding APIKey}"></TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="API Secret">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="exchangeSettings:ExchangeSettingsEntryViewModel">
+                                    <TextBox MinWidth="300" FontFamily="Consolas" Text="{Binding APISecret}"></TextBox>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <Button Grid.Row="1" Grid.Column="0" Width="40" Margin="2" Command="{Binding LoadCommand}">
+            <Button.Resources>
+                <Path x:Key="KeyIconPath" Margin="2" Data="{DynamicResource KeyIcon}" Stroke="White" StrokeThickness="1" Stretch="Uniform" Fill="Black" Width="Auto" Height="24" RenderTransformOrigin="0.5,0.5"></Path>
+                <Path x:Key="KeyIconUnlockedPath" Margin="2" Data="{DynamicResource KeyIcon}" Stroke="White" StrokeThickness="1" Stretch="Uniform" Fill="Gold" Width="Auto" Height="24" RenderTransformOrigin="0.5,0.5"></Path>
+
+            </Button.Resources>
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource ButtonStyle}" >
+                    <Setter Property="Content" Value="{DynamicResource KeyIconPath}"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SettingsUnlocked}" Value="True">
+                            <Setter Property="Content" Value="{DynamicResource KeyIconUnlockedPath}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SettingsUnlocked}" Value="False">
+                            <Setter Property="Content" Value="{DynamicResource KeyIconPath}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="2" Width="100" Content="Change Password" Margin="2" Command="{Binding ChangePasswordCommand}"></Button>
+        <Button Grid.Row="1" Grid.Column="3" Width="100" Content="Save" Margin="2" Command="{Binding SaveCommand}"></Button>
+    </Grid>
+</UserControl>
