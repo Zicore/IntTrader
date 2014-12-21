@@ -22,7 +22,7 @@ namespace IntTrader.Controls.Trades
             MainViewModel = mainViewModel;
             Parent = parent;
             MainViewModel.TimerSeconds.Tick += TimerSecondsOnTick;
-            _updateController.Register("Trades", Update, 5, false, true);
+            _updateController.Register("Trades", Update, 12, false, true);
             Update();
         }
 

@@ -81,7 +81,7 @@ namespace IntTrader.Controls.Exchange
 
         private void RegisterUpdates()
         {
-            UpdateController.Register("ExchangeViewModelOrderBook", OrderBook.Update, 8, true, true);
+            UpdateController.Register("ExchangeViewModelOrderBook", OrderBook.Update, 12, true, true);
             UpdateController.Register("ExchangeViewModelTicker", Ticker.Update, 5, true, true);
             UpdateController.Register("ExchangeViewModelOrders", Orders.Update, 10, true, true);
             UpdateController.Register("ExchangeViewModelBalance", Balance.Update, 15, true, true);
