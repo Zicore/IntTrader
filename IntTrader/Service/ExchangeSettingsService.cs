@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows;
 using IntTrader.API.Base.Exchange;
 using IntTrader.Dialogs.Password;
 using IntTrader.View;
@@ -81,7 +82,9 @@ namespace IntTrader.Service
                         }
                         catch
                         {
-
+                            vm.PasswordWrongVisibility = Visibility.Visible;
+                            cancelEventArgs.Cancel = true;
+                            vm.DialogResult = DialogResult.None;
                         }
                     }
                     if (vm.DialogResult == DialogResult.Cancel)

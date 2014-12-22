@@ -25,7 +25,18 @@ namespace Zicore.Settings.Json
             if (String.IsNullOrWhiteSpace(stringKey))
                 throw new ArgumentException("Argument must be not null and not whitespace", "stringKey");
             stringKey = stringKey.Trim();
-            _key = _sha256.ComputeHash(Encoding.UTF8.GetBytes(stringKey));
+
+            _key = Hash(256, _sha256, Encoding.UTF8.GetBytes(stringKey));
+        }
+
+        private static byte[] Hash(int iterations, HashAlgorithm hash, byte[] input)
+        {
+            byte[] buffer = input;
+            for (int i = 0; i < iterations; i++)
+            {
+                buffer = hash.ComputeHash(buffer);
+            }
+            return buffer;
         }
 
         protected override byte[] LoadFilter(byte[] data)

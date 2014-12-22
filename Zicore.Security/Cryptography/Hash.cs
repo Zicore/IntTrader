@@ -11,8 +11,9 @@ namespace Zicore.Security.Cryptography
         /// </summary>
         /// <param name="textToHash">string to hash</param>
         /// <param name="crypto">Crypto algorithm</param>
+        /// <param name="iterations">Amount of iterations</param>
         /// <returns>the lowercase hashed hexadecimal string.</returns>
-        public static string TextToHexStringHash(string textToHash, HashAlgorithm crypto)
+        public static string TextToHexStringHash(string textToHash, HashAlgorithm crypto, int iterations)
         {
             if (string.IsNullOrEmpty(textToHash))
             {
@@ -23,8 +24,12 @@ namespace Zicore.Security.Cryptography
                 throw new ArgumentNullException("crypto");
 
             byte[] textToHashBytes = Encoding.Default.GetBytes(textToHash);
-            byte[] result = crypto.ComputeHash(textToHashBytes);
 
+            byte[] result = textToHashBytes;
+            for (int i = 0; i < iterations; i++)
+            {
+                result = crypto.ComputeHash(result);
+            }
             return ToHexString(result);
         }
 

@@ -35,7 +35,7 @@ namespace IntTrader.Dialogs.Password
                 var vm = DataContext as CreatePasswordViewModel;
                 if (vm != null)
                 {
-                    vm.Password = Hash.TextToHexStringHash(pBox.Password, _sha256);
+                    vm.Password = Hash.TextToHexStringHash(pBox.Password, _sha256, 256);
                 }
             }
         }
@@ -48,7 +48,7 @@ namespace IntTrader.Dialogs.Password
                 var vm = DataContext as CreatePasswordViewModel;
                 if (vm != null)
                 {
-                    vm.PasswordRepeat = Hash.TextToHexStringHash(pBox.Password, _sha256);
+                    vm.PasswordRepeat = Hash.TextToHexStringHash(pBox.Password, _sha256, 256);
                 }
             }
         }

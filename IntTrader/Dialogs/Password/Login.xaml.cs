@@ -30,7 +30,7 @@ namespace IntTrader.Dialogs.Password
                 var vm = DataContext as LoginViewModel;
                 if (vm != null)
                 {
-                    vm.Password = Hash.TextToHexStringHash(pBox.Password, _sha256);
+                    vm.Password = Hash.TextToHexStringHash(pBox.Password, _sha256, 256);
                 }
             }
         }
