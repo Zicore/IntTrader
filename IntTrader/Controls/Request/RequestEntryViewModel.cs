@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Response;
 using IntTrader.ViewModel;
 
@@ -12,14 +13,23 @@ namespace IntTrader.Controls.Request
         public RequestEntryViewModel(ResponseData responseBase)
         {
             this.ResponseData = responseBase;
-            this.Name = ResponseData.Request.GetType().Name;
-            this.State = ResponseData.ResponseState.ToString();
+            this.Name = ResponseData.Request.GetType().FullName;
+            if (responseBase.ResponseState == ResponseState.Error ||
+                responseBase.ResponseState == ResponseState.Exception)
+            {
+                if (!String.IsNullOrEmpty(responseBase.Value) && responseBase.Value.Length <= 240)
+                {
+                    this.Description = responseBase.Value;
+                }
+                this.State = ResponseData.ResponseState.ToString();
+            }
         }
 
         private DateTime _timestamp = DateTime.Now;
         private String _name;
         private String _state;
         private ResponseData _responseData;
+        private String _description;
 
         public DateTime Timestamp
         {
@@ -42,6 +52,12 @@ namespace IntTrader.Controls.Request
         {
             get { return _state; }
             set { _state = value; }
+        }
+
+        public string Description
+        {
+            get { return _description; }
+            set { _description = value; }
         }
 
         public ResponseData ResponseData
