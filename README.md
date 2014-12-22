@@ -1,7 +1,7 @@
 IntTrader
 =============================
 
-IntTrader is the front end and implementation of the IntTrader.API and the target of IntTrader.API is to be a unified API for all Crypto Coin Markets. It features all the abstraction machanisms to implement another Exchange without alot effort.
+IntTrader is the front end and implementation of the IntTrader.API and the target of IntTrader.API is to be a unified API for all Crypto Coin Markets. It features all the abstraction mechanisms to implement another Exchange without alot effort.
 
 IntTrader is written in C# and makes use of WPF for the front end and Newtonsoft.Json for parsing of the APIs.
 That means the actual front end of IntTrader will currently only run on Windows, but I assume the IntTrader.API should work on Mono too.
