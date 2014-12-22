@@ -9,21 +9,12 @@ using Newtonsoft.Json.Linq;
 
 namespace IntTrader.API.Blockchain.Response
 {
-    [JsonConverter(typeof(MultiAddressConverter))]
     public class MultiAddressResponse : BlockchainResponse
     {
-        MultiAddressResponseData _response = new MultiAddressResponseData();
-
-        public MultiAddressResponseData Response
-        {
-            get { return _response; }
-            set { _response = value; }
-        }
-
         public MultiAddressModel Transform()
         {
             var model = new MultiAddressModel();
-            foreach (var address in Response.Addresses)
+            foreach (var address in Addresses)
             {
                 model.Items.Add(address.Transform());
             }
@@ -32,16 +23,9 @@ namespace IntTrader.API.Blockchain.Response
 
         public override void VerifyResponse()
         {
-            if (!String.IsNullOrEmpty(Message))
-            {
-                ResponseData.ResponseState = ResponseState.Error;
-            }
             base.VerifyResponse();
         }
-    }
 
-    public class MultiAddressResponseData
-    {
         List<MultiAddressResponseEntry> _addresses = new List<MultiAddressResponseEntry>();
 
         public List<MultiAddressResponseEntry> Addresses
@@ -123,36 +107,6 @@ namespace IntTrader.API.Blockchain.Response
                 NumberUnredeemed = NUnredeemed
             };
             return entry;
-        }
-    }
-
-    public class MultiAddressConverter : JsonConverter
-    {
-        public override bool CanConvert(Type objectType)
-        {
-            return (objectType == typeof(MultiAddressResponse));
-        }
-
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            JObject jObject = JObject.Load(reader);
-
-            if (jObject.Type == JTokenType.String)
-            {
-                return new MultiAddressResponse { Message = jObject.ToObject<String>() };
-            }
-
-            if (jObject.Type == JTokenType.Object)
-            {
-                return new MultiAddressResponse { Response = jObject.ToObject<MultiAddressResponseData>() };
-            }
-
-            return null;
         }
     }
 }

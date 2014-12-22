@@ -8,12 +8,6 @@ namespace IntTrader.API.Blockchain.Response
 {
     public class BlockchainResponse : ResponseBase
     {
-        private String _message;
 
-        public string Message
-        {
-            get { return _message; }
-            set { _message = value; }
-        }
     }
 }
