@@ -1,4 +1,5 @@
-﻿using IntTrader.API.Base.Response;
+﻿using IntTrader.API.Base.Model;
+using IntTrader.API.Base.Response;
 using IntTrader.API.Event;
 using Newtonsoft.Json;
 
@@ -7,16 +8,22 @@ namespace IntTrader.API.Base.Request
     public abstract class RequestBase
     {
 
-        public virtual T Request<T>()
+        public virtual T Request<T>() where T : class, new()
         {
             var rs = Request();
             rs.Request = this;
             return Deserialize<T>(rs);
         }
 
-        public T Deserialize<T>(ResponseData responseData)
+        public T Deserialize<T>(ResponseData responseData) where T : class, new()
         {
-            var result = JsonConvert.DeserializeObject<T>(responseData.Value);
+            T result = new T();
+
+            if (responseData.HasResult)
+            {
+                result = JsonConvert.DeserializeObject<T>(responseData.Value);
+            }
+
             var response = result as ResponseBase;
             if (response != null)
             {

@@ -50,6 +50,7 @@ namespace IntTrader.API.Base.Response
         public ResponseData(RequestBase request, WebException exception)
         {
             this.Request = request;
+            HasResult = false;
             ReadExceptionResponse(exception);
         }
 
@@ -66,7 +67,6 @@ namespace IntTrader.API.Base.Response
                 using (var sr = new StreamReader(stream))
                 {
                     Value = sr.ReadToEnd();
-                    HasResult = !String.IsNullOrEmpty(Value);
                 }
             }
         }
