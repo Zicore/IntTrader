@@ -19,7 +19,7 @@ namespace Zicore.Settings.Json
         public bool IsLoaded
         {
             get { return _isLoaded; }
-            private set { _isLoaded = value; }
+            protected set { _isLoaded = value; }
         }
 
         private String _filePath;
@@ -50,21 +50,21 @@ namespace Zicore.Settings.Json
 
             using (var sr = new StreamReader(new MemoryStream(data)))
             {
-                using (var xr = new JsonTextReader(sr))
+                using (var jsonTextReader = new JsonTextReader(sr))
                 {
-                    var xs = new JsonSerializer();
-                    var c = (JObject)xs.Deserialize(xr);
-                    Type t = this.GetType();
-                    PropertyInfo[] properties = t.GetProperties();
-                    foreach (PropertyInfo p in properties)
+                    var serializer = new JsonSerializer();
+                    var jObject = (JObject)serializer.Deserialize(jsonTextReader);
+                    Type type = this.GetType();
+                    PropertyInfo[] properties = type.GetProperties();
+                    foreach (PropertyInfo property in properties)
                     {
                         try
                         {
-                            var value = c.GetValue(p.Name);
+                            var value = jObject.GetValue(property.Name);
                             if (value != null)
                             {
-                                var result = value.ToObject(p.PropertyType);
-                                p.SetValue(this, result, null);
+                                var result = value.ToObject(property.PropertyType);
+                                property.SetValue(this, result, null);
                             }
                         }
                         catch
