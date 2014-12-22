@@ -28,6 +28,23 @@ Unfinished Features
 * OrderBook price grouping. It currently has a harcoded 2($) step for each group, which obviously wont work for prices lower than Bitcoin, also the grouping itself isn't finished yet.
 * Kraken orders which need two prices are not working yet e.g. stop-loss-limit.
 
+IntTrader Dashboard
+================
+The Dashboard is an overview about different pair prices. The Dashboard is planned to be customizable.
+
+![Dashboard](http://upppor.it/8aQ1.png)
+
+IntTrader Exchange - Bitfinex
+================
+Bitfinex is the first market, I have implemented. While I tried to keep focus basic functionality and abstractions, this application may tend a little towards the Bitfinex API.
+
+![Dashboard](http://upppor.it/4kPX.png)
+
+IntTrader Exchange - Kraken
+================
+Kraken is the second market implemented.
+Be aware that orders with two prices are currently not implemented. E.g. stop-loss-limit.
+
 IntTrader.API
 ================
 IntTrader.API is the root of everything, it provides all the base functionality to add another market, but it also provides a way for front end applications, to access the markets through the unified API.
