@@ -65,6 +65,16 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+
+                    <GridViewColumn Width="Auto" Header="Description">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate DataType="request:RequestEntryViewModel">
+                                <Grid Margin="1,1,1,1">
+                                    <TextBlock FontFamily="Consolas" Text="{Binding Description}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
