@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows;
 using IntTrader.ViewModel;
 using Zicore.WPF.Base.Commands;
 
@@ -64,6 +65,18 @@ namespace IntTrader.Dialogs.Password
                     _cancelCommand = new RelayCommand(x => Cancel());
                 }
                 return _cancelCommand;
+            }
+        }
+
+
+        private Visibility _passwordWrongVisibility = Visibility.Collapsed;
+        public Visibility PasswordWrongVisibility
+        {
+            get { return _passwordWrongVisibility; }
+            set
+            {
+                _passwordWrongVisibility = value;
+                OnPropertyChanged("PasswordWrongVisibility");
             }
         }
 

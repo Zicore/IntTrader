@@ -4,13 +4,14 @@
         xmlns:password="clr-namespace:IntTrader.Dialogs.Password"
         Background="Black"
         WindowStartupLocation="CenterScreen"
-        Title="Login" Height="130" Width="420" Icon="/IntTrader;component/bitcoin.ico">
+        Title="Login" Height="148" Width="420" Icon="/IntTrader;component/bitcoin.ico">
     <Window.DataContext>
         <password:LoginViewModel />
     </Window.DataContext>
     <Grid>
         <Grid Margin="10">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -29,8 +30,18 @@
                     <KeyBinding Key="Enter" Command="{Binding ApplyCommand}"></KeyBinding>
                 </PasswordBox.InputBindings>
             </PasswordBox>
+            
+            <TextBlock 
+                Margin="4"
+                Visibility="{Binding PasswordWrongVisibility}"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Grid.Row="2"
+                FontWeight="Bold"
+                Text="Encryption failed. The entered password probably is wrong.">
+            </TextBlock>
 
-            <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3">
+            <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
