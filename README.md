@@ -48,6 +48,29 @@ IntTrader Exchange - Kraken
 Kraken is the second market implemented.
 Be aware that orders with two prices are currently not implemented. E.g. stop-loss-limit.
 
+IntTrader - Login
+================
+You can login by clicking the Key symbol. It tries to unlock the application for private market usage and will prompt for a password.
+
+The first time you do this or by logging in and clicking the Change Password button, you can define the password.
+This password is not saved anywhere and it's just used to decrypt the settings file for the API keys.
+Please choose a strong password.
+
+If you lose the password, you have to manually remove or rename the **ExchangeSettings.aes.json** file, from AppData and recreate one, by logging in again, you also have to add the api keys and secrets again.
+
+IntTrader - API Keys
+================
+In this section of the Application you can manage the API Keys of the exchanges.
+* Please use only minimal possible Keys e.g. Trading only.
+* Do not share one key with multiple Applications.
+
+IntTrader - AppData
+================
+The application creates two different settings files. Both located at %appdata%/IntTrader
+
+* **ExchangeSettings.aes.json** stores the API Keys and Secrets and is encrypted with a password you choose on first login.
+* **AppSettings.json** stores public addresses for the Blockchain balance lookup.
+
 IntTrader.API
 ================
 IntTrader.API is the root of everything, it provides all the base functionality to add another market, but it also provides a way for front end applications, to access the markets through the unified API.
