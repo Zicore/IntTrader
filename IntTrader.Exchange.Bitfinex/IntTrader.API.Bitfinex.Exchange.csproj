@@ -46,8 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bitfinex\Data\Symbol.cs" />
-    <Compile Include="Bitfinex\Data\Symbols.cs" />
     <Compile Include="Bitfinex\Request\Authenticated\AuthenticatedRequest.cs" />
     <Compile Include="Bitfinex\Request\Authenticated\Balance.cs" />
     <Compile Include="Bitfinex\Request\OrderBook.cs" />

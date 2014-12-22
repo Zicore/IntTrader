@@ -1,10 +1,10 @@
-﻿using IntTrader.API.Exchange.Bitfinex.Data;
+﻿using IntTrader.API.Currency;
 
 namespace IntTrader.API.Exchange.Bitfinex.Request
 {
     public class Today : BitfinexRequestBase
     {
-        public Today(BitfinexSymbol symbol)
+        public Today(PairBase symbol)
         {
             RequestUri = "/v1/today/" + symbol.Name;
         }

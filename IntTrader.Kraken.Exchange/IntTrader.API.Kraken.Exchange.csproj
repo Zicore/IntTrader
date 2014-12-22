@@ -47,8 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Kraken\Authentication.cs" />
-    <Compile Include="Kraken\Data\Symbol.cs" />
-    <Compile Include="Kraken\Data\Symbols.cs" />
     <Compile Include="Kraken\Request\Authenticated\AuthenticatedRequest.cs" />
     <Compile Include="Kraken\Request\Authenticated\BalanceRequest.cs" />
     <Compile Include="Kraken\Request\Authenticated\CancelOrderRequest.cs" />
