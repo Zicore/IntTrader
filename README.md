@@ -13,6 +13,15 @@ The following Exchanges are partially implemented right now. I kept focus on bas
 
 **IntTrader** stands for Integrated Trader and it basically means, everything important is in one view ;-)
 
+Release - Dev
+================
+Here you find the current releases:
+
+* ![Download R1](https://github.com/Zicore/IntTrader/raw/master/built/dev/R1/IntTrader.zip)
+![(Hashes)](https://github.com/Zicore/IntTrader/commit/5cf75ca42a402a9a920bf8e055d64874b53be553#diff-1e1a0b86da1816227825625ad9f78851)
+
+I will maybe setup a build server soon.
+
 Exchange Features
 ================
 * Dashboard
