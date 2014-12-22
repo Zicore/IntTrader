@@ -11,6 +11,8 @@ The following Exchanges are partially implemented right now. I kept focus on bas
 * Kraken
 * Bitfinex
 
+**IntTrader** stands for Integrated Trader and it basically means, everything important is in one view ;-)
+
 Exchange Features
 ================
 * Dashboard
