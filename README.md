@@ -35,14 +35,14 @@ General Features
 ================
 * API Keys Management
 * Encrypted Settings for the API Keys and Secrets
-* Bitcoin Address Lookup via Blockchain
+* Bitcoin Address Lookup via Blockchain (Wallet Balances)
 
 Unfinished Features
 ================
 * OrderBook price grouping. It currently has a harcoded 2($) step for each group, which obviously wont work for prices lower than Bitcoin, also the grouping itself isn't finished yet.
 * Kraken orders which need two prices are not working yet e.g. stop-loss-limit.
 
-IntTrader Dashboard
+IntTrader - Dashboard
 ================
 The Dashboard is an overview about different pair prices. The Dashboard is planned to be customizable.
 
@@ -58,6 +58,12 @@ IntTrader Exchange - Kraken
 ================
 Kraken is the second market implemented.
 Be aware that orders with two prices are currently not implemented. E.g. stop-loss-limit.
+
+IntTrader - Addresses
+================
+This view allows to make lookups for bitcoin addresses. It could help to keep track of all wallets and see if the final balance is valid.
+
+![Dashboard](http://upppor.it/iG9V.png)
 
 IntTrader - Login
 ================
