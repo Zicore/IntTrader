@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntTrader", "IntTrader\IntT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntTrader.API", "IntTrader.API\IntTrader.API.csproj", "{4221C6B6-371F-43AB-AC22-5B5387666FB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntTraderConsole", "IntTrader.Console\IntTraderConsole.csproj", "{DE8C4EBF-4D34-4E67-A3C1-023AF47D1AAD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zicore.Security", "Zicore.Security\Zicore.Security.csproj", "{48C98F71-2210-4806-8ED3-6AEED2729801}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntTrader.API.Bitfinex.Exchange", "IntTrader.Exchange.Bitfinex\IntTrader.API.Bitfinex.Exchange.csproj", "{197032DF-DB20-459B-A0B3-C387E640F39A}"
@@ -35,10 +33,6 @@ Global
 		{4221C6B6-371F-43AB-AC22-5B5387666FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4221C6B6-371F-43AB-AC22-5B5387666FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4221C6B6-371F-43AB-AC22-5B5387666FB1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE8C4EBF-4D34-4E67-A3C1-023AF47D1AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE8C4EBF-4D34-4E67-A3C1-023AF47D1AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE8C4EBF-4D34-4E67-A3C1-023AF47D1AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE8C4EBF-4D34-4E67-A3C1-023AF47D1AAD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48C98F71-2210-4806-8ED3-6AEED2729801}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{48C98F71-2210-4806-8ED3-6AEED2729801}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48C98F71-2210-4806-8ED3-6AEED2729801}.Release|Any CPU.ActiveCfg = Release|Any CPU
