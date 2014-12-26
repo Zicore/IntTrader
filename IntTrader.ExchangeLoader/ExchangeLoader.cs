@@ -5,12 +5,14 @@ using System.IO;
 using System.Reflection;
 using IntTrader.API.Base.Exchange;
 using IntTrader.API.Base.Exchange.Base;
+using NLog;
 
 namespace IntTrader.API.ExchangeLoader
 {
     public class ExchangeLoader
     {
         private static bool _pluginsLoaded = false;
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         public ExchangeLoader()
         {
@@ -58,13 +60,13 @@ namespace IntTrader.API.ExchangeLoader
                                     }
                                     catch (Exception ex)
                                     {
-                                        Debug.Write(ex);
+                                        Log.Error(ex);
                                     }
                                 }
                             }
                             catch (Exception ex)
                             {
-                                Debug.Write(ex);
+                                Log.Error(ex);
                             }
                         }
                     }
