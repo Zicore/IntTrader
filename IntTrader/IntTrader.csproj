@@ -99,6 +99,10 @@
       <DependentUpon>RequestView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Request\RequestViewModel.cs" />
+    <Compile Include="Controls\Sentiment\SentimentView.xaml.cs">
+      <DependentUpon>SentimentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Sentiment\SentimentViewModel.cs" />
     <Compile Include="Controls\Trades\TradesEntryViewModel.cs" />
     <Compile Include="Controls\Trades\TradesView.xaml.cs">
       <DependentUpon>TradesView.xaml</DependentUpon>
@@ -193,11 +197,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\Sentiment\SentimentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Trades\TradesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\BasicResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\SentimentResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

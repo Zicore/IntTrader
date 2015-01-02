@@ -6,6 +6,7 @@ using System.Text;
 using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Model;
 using IntTrader.Controls.Exchange;
+using IntTrader.Controls.Sentiment;
 using IntTrader.Service;
 using IntTrader.ViewModel;
 
@@ -16,10 +17,13 @@ namespace IntTrader.Controls.Trades
         public MainViewModel MainViewModel { get; set; }
         public ExchangeViewModelBase Parent { get; set; }
 
+        public SentimentViewModel SentimentViewModel { get; set; }
+
         public TradesViewModel(MainViewModel mainViewModel, ExchangeViewModelBase parent, ExchangeBase exchangeBase)
             : base(exchangeBase)
         {
             MainViewModel = mainViewModel;
+            SentimentViewModel = new SentimentViewModel(exchangeBase, this);
             Parent = parent;
             MainViewModel.TimerSeconds.Tick += TimerSecondsOnTick;
             _updateController.Register("Trades", Update, 12, false, true);
@@ -36,6 +40,14 @@ namespace IntTrader.Controls.Trades
 
         ObservableCollection<TradesEntryViewModel> _items = new ObservableCollection<TradesEntryViewModel>();
 
+        TradesModel _tradesModel = new TradesModel();
+
+        public TradesModel TradesModel
+        {
+            get { return _tradesModel; }
+            set { _tradesModel = value; }
+        }
+
         public ObservableCollection<TradesEntryViewModel> Items
         {
             get { return _items; }
@@ -48,10 +60,12 @@ namespace IntTrader.Controls.Trades
                 var model = Exchange.RequestTrades(Pair);
                 Dispatch(() => Dispatch(model));
             }
+            base.OnUpdate();
         }
 
         private void Dispatch(TradesModel model)
         {
+            this.TradesModel = model;
             Items.Clear();
             foreach (var trade in model.Items.Take(200))
             {

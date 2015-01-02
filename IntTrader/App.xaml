@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Resources/BalanceResources.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Resources/OrderBookResources.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="Themes/ExpressionDark.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="Resources/SentimentResources.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
