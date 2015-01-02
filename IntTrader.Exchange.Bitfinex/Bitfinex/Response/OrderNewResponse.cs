@@ -1,4 +1,5 @@
 ﻿using System;
+using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Transform;
 using IntTrader.API.Converter;
@@ -8,11 +9,6 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
 {
     public class OrderNewResponse : OrderStatusResponse, IOrderNew
     {
-        public OrderNewResponse()
-        {
-
-        }
-
         private String _orderId;
 
         [JsonProperty("order_id")]
@@ -29,7 +25,7 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
                 OrderId = OrderId,
                 AverageExecutionPrice = AverageExecutionPrice,
                 DateTime = DateTimeConverter.ConvertTimestamp(Timestamp),
-                Exchange = Exchange,
+                Exchange = ExchangeString,
                 ExecutedAmount = ExecutedAmount,
                 IsCancelled = IsCancelled,
                 IsLive = IsLive,

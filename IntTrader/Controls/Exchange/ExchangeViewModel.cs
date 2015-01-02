@@ -9,6 +9,7 @@ using IntTrader.API.Currency;
 using IntTrader.Controls.Balance;
 using IntTrader.Controls.NewOrder;
 using IntTrader.Controls.OrderBook;
+using IntTrader.Controls.Sentiment;
 using IntTrader.Controls.Ticker;
 using IntTrader.Controls.Trades;
 using IntTrader.Controls.UserOrders;
@@ -152,6 +153,7 @@ namespace IntTrader.Controls.Exchange
             NewBuyOrder.UpdatePair(pair);
             NewSellOrder.UpdatePair(pair);
             Trades.UpdatePair(pair);
+            Trades.SentimentViewModel.UpdatePair(pair);
         }
 
         private void CreateTimer()

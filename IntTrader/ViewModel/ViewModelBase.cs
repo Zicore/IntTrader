@@ -14,6 +14,14 @@ namespace IntTrader.ViewModel
 
         }
 
+        public event EventHandler<EventArgs> UpdateEvent;
+
+        protected virtual void OnUpdateEvent()
+        {
+            EventHandler<EventArgs> handler = UpdateEvent;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
         private Brush _foreground = Brushes.DarkGray;
         private Brush _background = Brushes.Black;
 
@@ -77,7 +85,7 @@ namespace IntTrader.ViewModel
 
         public virtual void OnUpdate()
         {
-
+            OnUpdateEvent();
         }
 
         public void Update()

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Transform;
 using IntTrader.API.Converter;
+using IntTrader.API.Currency;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -35,6 +37,11 @@ namespace IntTrader.API.Exchange.Kraken.Response
 
     public class OpenOrderEntry
     {
+        public OpenOrderEntry()
+        {
+
+        }
+
         private String _txid; //array of order info in open array with txid as the key
         private String _refid;//Referral order transaction id that created this order
         private String _userref;//user reference id

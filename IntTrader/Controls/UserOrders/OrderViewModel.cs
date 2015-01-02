@@ -2,6 +2,7 @@
 using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Request;
+using IntTrader.API.Currency;
 using IntTrader.ViewModel;
 using Zicore.WPF.Base.Commands;
 using Zicore.WPF.Base.Event;
@@ -48,7 +49,7 @@ namespace IntTrader.Controls.UserOrders
             return new OrderViewModel(exchange)
                 {
                     OrderId = model.OrderId,
-                    SymbolText = model.Symbol,
+                    Pair = exchange.CurrencyManager.GetPair(model.Symbol),
                     ExchangeName = model.Exchange,
                     Price = model.Price,
                     AvgerageExecutionPrice = model.AverageExecutionPrice,
@@ -62,7 +63,6 @@ namespace IntTrader.Controls.UserOrders
         }
 
         private String _orderId;
-        private String _symbol;
         private String _exchangeName;
         private decimal _price;
         private decimal _avgerageExecutionPrice;
@@ -96,13 +96,7 @@ namespace IntTrader.Controls.UserOrders
 
         public string SymbolText
         {
-            get { return _symbol; }
-            set
-            {
-                _symbol = value;
-                OnPropertyChanged("SymbolText");
-
-            }
+            get { return Pair.SymbolPair; }
         }
 
         public decimal Price
