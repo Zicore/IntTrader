@@ -20,7 +20,7 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
         //Active Orders
 
         private String _symbol;
-        private String _exchange;
+        private String _exchangeString;
         private decimal _price;
         private decimal _averageExecutionPrice;
         private String _type;
@@ -33,10 +33,10 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
         private decimal _originalAmount;
 
         [JsonProperty("exchange")]
-        public string Exchange
+        public string ExchangeString
         {
-            get { return _exchange; }
-            set { _exchange = value; }
+            get { return _exchangeString; }
+            set { _exchangeString = value; }
         }
 
         [JsonProperty("symbol")]

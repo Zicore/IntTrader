@@ -21,6 +21,7 @@ namespace IntTrader.API.Currency
             };
 
         private Dictionary<String, PairBase> _supportedPairs = new Dictionary<string, PairBase>();
+        private Dictionary<String, String> _supportedPairsReverse = new Dictionary<string, string>();
 
         /// <summary>
         /// These should be loaded from JSON File in Future
@@ -32,10 +33,10 @@ namespace IntTrader.API.Currency
 
                 {PairBase.LTCEUR,new PairBase{Key = PairBase.LTCEUR,Description = "LTC/EUR", LeftCurrency = CurrencyBase.LTC, RightCurrency = CurrencyBase.EUR}},
                 {PairBase.LTCUSD,new PairBase{Key = PairBase.LTCUSD,Description = "LTC/USD", LeftCurrency = CurrencyBase.LTC, RightCurrency = CurrencyBase.USD}},
-
+                                                                   
                 {PairBase.LTCBTC,new PairBase{Key = PairBase.LTCBTC,Description = "LTC/BTC", LeftCurrency = CurrencyBase.LTC, RightCurrency = CurrencyBase.BTC}},
                 {PairBase.BTCLTC,new PairBase{Key = PairBase.BTCLTC,Description = "BTC/LTC", LeftCurrency = CurrencyBase.BTC, RightCurrency = CurrencyBase.LTC}},
-
+                                                                   
                 {PairBase.DRKUSD,new PairBase{Key = PairBase.DRKUSD,Description = "DRK/USD", LeftCurrency = CurrencyBase.DRK, RightCurrency = CurrencyBase.USD}},
                 {PairBase.DRKBTC,new PairBase{Key = PairBase.DRKBTC,Description = "DRK/BTC", LeftCurrency = CurrencyBase.DRK, RightCurrency = CurrencyBase.BTC}},
             };
@@ -67,6 +68,7 @@ namespace IntTrader.API.Currency
         {
             _supportedPairs[key] = _availablePairs[key];
             _supportedPairs[key].Name = pairKey;
+            _supportedPairsReverse[pairKey] = key;
         }
 
         public void RemoveSupportedPair(String key)
@@ -83,6 +85,13 @@ namespace IntTrader.API.Currency
         /// <exception cref="PairNotSupportedException"></exception>
         public PairBase GetPair(String key)
         {
+            key = key.ToUpperInvariant();
+
+            if (_supportedPairsReverse.ContainsKey(key))
+            {
+                key = _supportedPairsReverse[key];
+            }
+
             if (_supportedPairs.ContainsKey(key))
             {
                 return _supportedPairs[key];

@@ -1,4 +1,5 @@
-﻿using IntTrader.API.Base.Model;
+﻿using IntTrader.API.Base.Exchange.Base;
+using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Transform;
 using IntTrader.API.Converter;
 
@@ -26,7 +27,7 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
             return new OpenOrderEntryModel
             {
                 AverageExecutionPrice = AvgerageExecutionPrice,
-                Exchange = Exchange,
+                Exchange = ExchangeString,
                 ExecutedAmount = ExecutedAmount,
                 IsCancelled = IsCancelled,
                 IsLive = IsLive,

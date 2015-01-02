@@ -8,16 +8,16 @@ namespace IntTrader.API.Base.Request
     public abstract class RequestBase
     {
 
-        public virtual T Request<T>() where T : class, new()
+        public virtual T Request<T>() where T : class
         {
             var rs = Request();
             rs.Request = this;
             return Deserialize<T>(rs);
         }
 
-        public T Deserialize<T>(ResponseData responseData) where T : class, new()
+        public T Deserialize<T>(ResponseData responseData) where T : class
         {
-            T result = new T();
+            T result = null;
 
             if (responseData.HasResult)
             {
