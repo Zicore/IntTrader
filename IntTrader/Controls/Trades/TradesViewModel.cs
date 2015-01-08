@@ -67,7 +67,7 @@ namespace IntTrader.Controls.Trades
         {
             this.TradesModel = model;
             Items.Clear();
-            foreach (var trade in model.Items.Take(200))
+            foreach (var trade in model.Items.Take(500))
             {
                 var vm = TradesEntryViewModel.FromModel(Exchange, trade);
                 Items.Add(vm);

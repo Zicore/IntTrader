@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Threading;
 using IntTrader.API.Base.Exchange;
+using IntTrader.API.Currency;
 using IntTrader.API.ExchangeLoader;
 using IntTrader.Controls.Blockchain.Address;
 using IntTrader.Controls.CommandToolBar;
@@ -116,7 +118,7 @@ namespace IntTrader.ViewModel
             if (!DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
                 RequestViewModel = new RequestViewModel(this, ExchangeManager);
-                AddressViewModel = new AddressViewModel(_exchangeManager);
+                AddressViewModel = new AddressViewModel(_exchangeManager, this);
 
                 var loader = new ExchangeLoader();
                 loader.LoadExchanges(ExchangeManager);
@@ -142,6 +144,11 @@ namespace IntTrader.ViewModel
                 Tabs.Add(SettingsViewModel);
                 CreateTimer();
             }
+        }
+
+        public Decimal TotalBalance(CurrencyBase currency)
+        {
+            return Exchanges.Sum(e => e.Balance.Items.Where(b => b.Currency.Key == currency.Key).Sum(x => x.Amount));
         }
 
         public void RequestClose()

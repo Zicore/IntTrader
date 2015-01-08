@@ -9,6 +9,7 @@ using IntTrader.API.Base.Exchange;
 using IntTrader.API.Blockchain.Model;
 using IntTrader.API.Blockchain.Request;
 using IntTrader.API.Blockchain.Response;
+using IntTrader.API.Currency;
 using IntTrader.ViewModel;
 using Zicore.WPF.Base.Commands;
 
@@ -16,9 +17,12 @@ namespace IntTrader.Controls.Blockchain.Address
 {
     public class AddressViewModel : ExchangeManagerViewModel
     {
-        public AddressViewModel(ExchangeManager exchangeManager)
+        public MainViewModel MainViewModel { get; set; }
+
+        public AddressViewModel(ExchangeManager exchangeManager, MainViewModel mainViewModel)
             : base(exchangeManager)
         {
+            MainViewModel = mainViewModel;
             //Foreground = Brushes.Gold;
             Header = "Addresses";
             UpdateAddressesFromSettings();
@@ -106,7 +110,7 @@ namespace IntTrader.Controls.Blockchain.Address
 
         public decimal SumBalance
         {
-            get { return Items.Sum(x => x.FinalBalance); }
+            get { return Items.Sum(x => x.FinalBalance) + MainViewModel.TotalBalance(CurrencyBase.BTC); }
         }
     }
 }

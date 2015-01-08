@@ -100,13 +100,28 @@ namespace IntTrader.Controls.Exchange
         {
             if (!Balance.SelectedBalanceEntry.Currency.IsCryptoCurrency)
             {
-                NewBuyOrder.Result = Balance.SelectedBalanceEntry.Amount;
-                NewSellOrder.Result = Balance.SelectedBalanceEntry.Amount;
+                if (NewBuyOrder.Pair.LeftCurrency.Key == Balance.SelectedBalanceEntry.Currency.Key)
+                {
+                    NewBuyOrder.Result = Balance.SelectedBalanceEntry.Amount;
+                    NewSellOrder.Result = Balance.SelectedBalanceEntry.Amount;
+                }
             }
             else
             {
-                NewBuyOrder.Amount = Balance.SelectedBalanceEntry.Amount;
-                NewSellOrder.Amount = Balance.SelectedBalanceEntry.Amount;
+                if (NewBuyOrder.Pair.LeftCurrency.Key == Balance.SelectedBalanceEntry.Currency.Key)
+                {
+
+
+                    NewBuyOrder.Amount = Balance.SelectedBalanceEntry.Amount;
+                    NewSellOrder.Amount = Balance.SelectedBalanceEntry.Amount;
+                }
+
+                if (NewBuyOrder.Pair.RightCurrency.Key == Balance.SelectedBalanceEntry.Currency.Key)
+                {
+                    NewBuyOrder.Price = Balance.SelectedBalanceEntry.Amount;
+                    NewSellOrder.Price = Balance.SelectedBalanceEntry.Amount;
+
+                }
             }
         }
 
@@ -124,8 +139,17 @@ namespace IntTrader.Controls.Exchange
 
         private void TickerOnLastTradeClickEvent(object sender, EventArgs eventArgs)
         {
-            NewBuyOrder.Price = Ticker.LastPrice;
-            NewSellOrder.Price = Ticker.LastPrice;
+            if (Ticker.Pair.RightCurrency.Key == NewBuyOrder.Pair.RightCurrency.Key)
+            {
+                NewBuyOrder.Price = Ticker.LastPrice;
+                NewSellOrder.Price = Ticker.LastPrice;
+            }
+
+            if (Ticker.Pair.RightCurrency.Key == NewBuyOrder.Pair.LeftCurrency.Key)
+            {
+                NewBuyOrder.Result = Ticker.LastPrice;
+                NewSellOrder.Result = Ticker.LastPrice;
+            }
         }
 
         private void TickerOnDispatched(object sender, EventArgs eventArgs)

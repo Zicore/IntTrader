@@ -3,24 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:behaviour="clr-namespace:Zicore.WPF.Base.Behaviour;assembly=Zicore.WPF.Base"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="400">
     <Grid>
-        <ListView ItemsSource="{Binding Asks}" BorderThickness="0" SelectedItem="{Binding SelectedAsk}" x:Name="List">
-            <!--<ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}" >
-                        <TextBlock.LayoutTransform>
-                            <ScaleTransform ScaleX="1" ScaleY="-1" />
-                        </TextBlock.LayoutTransform>
-                    </TextBlock>
-                </DataTemplate>
-            </ListView.ItemTemplate>-->
-            
-            
-            
-            
-            <ListView.View>
+        <ListView HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding Asks}" BorderThickness="0" SelectedItem="{Binding SelectedAsk}" x:Name="List">
+           <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderCollapsed}">
                     <GridViewColumn Width="Auto" CellTemplate="{StaticResource PriceColumn}" Header="Price"></GridViewColumn>
                     <GridViewColumn Width="Auto" CellTemplate="{StaticResource AmountColumn}" Header="Volume"></GridViewColumn>

@@ -4,6 +4,8 @@ namespace IntTrader.API.Currency
 {
     public class PairBase
     {
+        public static readonly String BTCXRP = "XRPBTC";
+
         public static readonly String LTCEUR = "LTCEUR";
         public static readonly String LTCUSD = "LTCUSD";
 
