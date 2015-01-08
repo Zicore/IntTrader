@@ -111,8 +111,8 @@
             <Button Margin="2" Grid.Column="0" Content="+" Width="26" Command="{Binding AddItemCommand}"></Button>
             <Button Margin="2" Grid.Column="1" Content="-" Width="26" Command="{Binding RemoveItemCommand}"></Button>
             <Button Margin="2" Grid.Column="2" Content="Update" Command="{Binding UpdateCommand}"></Button>
-            
-            <TextBlock Text="Sum of balance " Grid.Column="4" Margin="2"></TextBlock>
+
+            <TextBlock Text="Total Balance (Ƀ)" Grid.Column="4" Margin="2"></TextBlock>
             <TextBox Margin="1" Grid.Column="5" Width="140" Text="{Binding SumBalance,Mode=OneWay}" FontFamily="Consolas" IsReadOnly="True"></TextBox>
         </Grid>
     </Grid>
