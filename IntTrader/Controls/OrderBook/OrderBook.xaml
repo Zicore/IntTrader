@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:orderBook="clr-namespace:IntTrader.Controls.OrderBook"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="200" d:DataContext="{d:DesignInstance orderBook:OrderBookViewModel}">
+             d:DesignHeight="300" d:DesignWidth="400" d:DataContext="{d:DesignInstance orderBook:OrderBookViewModel}">
     <Border BorderThickness="1,0,0,0" BorderBrush="{StaticResource LightBrush}" Background="Black">
         <Grid>
             <Grid.RowDefinitions>
