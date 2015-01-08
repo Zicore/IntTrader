@@ -37,38 +37,38 @@
     </Style>-->
 
     <DataTemplate x:Key="AmountColumn">
-        <Grid Margin="1,1,1,1" IsHitTestVisible="True">
-            <TextBlock HorizontalAlignment="Right" FontFamily="Consolas">
+        <Grid Margin="1,1,1,1" IsHitTestVisible="True" HorizontalAlignment="Stretch">
+            <TextBlock HorizontalAlignment="Stretch" FontFamily="Consolas">
                 <Run Foreground="White" Text="{Binding Path=AmountEntry.Prefix}"/><Run Foreground="Gray" Text="{Binding Path=AmountEntry.Suffix}"/>
             </TextBlock>
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="DateTime">
-        <Grid Margin="1,1,1,1">
-            <TextBlock Text="{Binding DateTime}"></TextBlock>
+        <Grid Margin="1,1,1,1" HorizontalAlignment="Stretch">
+            <TextBlock HorizontalAlignment="Stretch" Text="{Binding DateTime}"></TextBlock>
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="PriceColumn">
-        <Grid Margin="1,1,1,1" IsHitTestVisible="True">
-            <TextBlock HorizontalAlignment="Right" FontFamily="Consolas">
+        <Grid Margin="1,1,1,1" IsHitTestVisible="True" HorizontalAlignment="Stretch">
+            <TextBlock HorizontalAlignment="Stretch" FontFamily="Consolas">
                 <Run Foreground="White" Text="{Binding Path=PriceEntry.Prefix}"/><Run Foreground="Gray" Text="{Binding Path=PriceEntry.Suffix}"/>
             </TextBlock>
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="GroupedPrice">
-        <Grid Margin="1,1,1,1" IsHitTestVisible="True">
-            <TextBlock HorizontalAlignment="Right" FontFamily="Consolas">
+        <Grid Margin="1,1,1,1" IsHitTestVisible="True" HorizontalAlignment="Stretch">
+            <TextBlock HorizontalAlignment="Stretch" FontFamily="Consolas">
                 <Run Foreground="White" Text="{Binding Path=GroupedPrice}"/>
             </TextBlock>
         </Grid>
     </DataTemplate>
 
     <DataTemplate x:Key="GroupedVolume">
-        <Grid Margin="1,1,1,1" IsHitTestVisible="True">
-            <TextBlock HorizontalAlignment="Right" FontFamily="Consolas">
+        <Grid Margin="1,1,1,1" IsHitTestVisible="True" HorizontalAlignment="Stretch">
+            <TextBlock HorizontalAlignment="Stretch" FontFamily="Consolas">
                 <Run Foreground="White" Text="{Binding Path=GroupedVolume}"/>
             </TextBlock>
         </Grid>
