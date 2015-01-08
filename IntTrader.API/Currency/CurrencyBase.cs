@@ -12,6 +12,8 @@ namespace IntTrader.API.Currency
         public static readonly CurrencyBase DGE = new CurrencyBase { Key = "DGE", AlternativeKey = "XXDG", Name = "Dogecoin", Symbol = "Dog", Decimals = 8, IsCryptoCurrency = true };
         public static readonly CurrencyBase NMC = new CurrencyBase { Key = "NMC", AlternativeKey = "XNMC", Name = "Namecoin", Symbol = "N", Decimals = 8, IsCryptoCurrency = true };
 
+        public static readonly CurrencyBase XRP = new CurrencyBase { Key = "XRP", AlternativeKey = "XXRP", Name = "Ripple", Symbol = "Ʀ", Decimals = 8, IsCryptoCurrency = true };
+
         private bool _isCryptoCurrency = false;
         private String _name;
         private String _key;

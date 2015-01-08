@@ -17,7 +17,7 @@ namespace IntTrader.API.Currency
         private List<CurrencyBase> _supportedCurrencies = new List<CurrencyBase>
             {
                 CurrencyBase.EUR,CurrencyBase.USD,
-                CurrencyBase.BTC,CurrencyBase.LTC,CurrencyBase.DRK,CurrencyBase.DGE,CurrencyBase.NMC
+                CurrencyBase.BTC,CurrencyBase.LTC,CurrencyBase.DRK,CurrencyBase.DGE,CurrencyBase.NMC, CurrencyBase.XRP
             };
 
         private Dictionary<String, PairBase> _supportedPairs = new Dictionary<string, PairBase>();
@@ -39,6 +39,8 @@ namespace IntTrader.API.Currency
                                                                    
                 {PairBase.DRKUSD,new PairBase{Key = PairBase.DRKUSD,Description = "DRK/USD", LeftCurrency = CurrencyBase.DRK, RightCurrency = CurrencyBase.USD}},
                 {PairBase.DRKBTC,new PairBase{Key = PairBase.DRKBTC,Description = "DRK/BTC", LeftCurrency = CurrencyBase.DRK, RightCurrency = CurrencyBase.BTC}},
+
+                {PairBase.BTCXRP,new PairBase{Key = PairBase.BTCXRP,Description = "BTC/XRP", LeftCurrency = CurrencyBase.BTC, RightCurrency = CurrencyBase.XRP}},
             };
 
         public List<CurrencyBase> SupportedCurrencies

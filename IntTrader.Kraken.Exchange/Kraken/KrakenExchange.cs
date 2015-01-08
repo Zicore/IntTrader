@@ -53,6 +53,7 @@ namespace IntTrader.API.Exchange.Kraken
             CurrencyManager.AddSupportedPair(PairBase.BTCUSD, "XBTUSD");
             CurrencyManager.AddSupportedPair(PairBase.LTCUSD, "LTCUSD");
             CurrencyManager.AddSupportedPair(PairBase.BTCLTC, "XBTLTC");
+            CurrencyManager.AddSupportedPair(PairBase.BTCXRP, "XBTXRP");
         }
 
         public override TickerModel RequestTicker(PairBase pair)
