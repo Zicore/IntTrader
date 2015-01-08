@@ -48,6 +48,7 @@
     <Compile Include="AdornerServices\WatermarkAdorner.cs" />
     <Compile Include="AdornerServices\WatermarkService.cs" />
     <Compile Include="Behaviour\BindableSelectedItemBehavior.cs" />
+    <Compile Include="Behaviour\GridViewColumnResize.cs" />
     <Compile Include="Behaviour\IgnoreMouseWheelBehavior.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Controls\DataBoundRadioButton.cs" />
