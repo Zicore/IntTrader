@@ -44,28 +44,44 @@
     </Grid>-->
     
     <Grid Margin="2">
-        <ListBox ItemsSource="{Binding Items}" BorderThickness="0" SelectedItem="{Binding SelectedBalanceEntryReadOnly}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        
-                        <TextBlock FontFamily="Consolas" Margin="3" Grid.Column="0" Text="{Binding Type}"></TextBlock>
-                        <TextBlock FontFamily="Consolas" Margin="3" Grid.Column="1" Text="{Binding Currency.Symbol}"></TextBlock>
-                        <TextBlock FontFamily="Consolas" Margin="3" Grid.Column="2" Text="{Binding Available}"></TextBlock>
-                    </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+        <ListView ItemsSource="{Binding Items}" BorderThickness="0" SelectedItem="{Binding SelectedBalanceEntryReadOnly}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView.Resources>
+                <DataTemplate x:Key="BalanceColumn" DataType="balance:BalanceEntryViewModel">
+                        <Grid Margin="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
-            <ListBox.ItemsPanel>
+                            <TextBlock FontFamily="Consolas" Margin="3" Grid.Column="0" Text="{Binding Type}"></TextBlock>
+                            <TextBlock FontFamily="Consolas" Margin="3" Grid.Column="1" Text="{Binding Currency.Symbol}"></TextBlock>
+                            <TextBlock FontFamily="Consolas" Margin="3" Grid.Column="2" Text="{Binding Available}"></TextBlock>
+                        </Grid>
+                </DataTemplate>
+
+            </ListView.Resources>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" >
+                        <TextBlock.LayoutTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="-1" />
+                        </TextBlock.LayoutTransform>
+                    </TextBlock>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel Orientation="Horizontal"></WrapPanel>
                 </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>
+            </ListView.ItemsPanel>
+
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderCollapsed}">
+                    <GridViewColumn Width="Auto" CellTemplate="{StaticResource BalanceColumn}" Header="Name"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

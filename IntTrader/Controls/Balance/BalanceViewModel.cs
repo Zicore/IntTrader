@@ -13,16 +13,7 @@ namespace IntTrader.Controls.Balance
         public BalanceViewModel(ExchangeBase exchangeBase)
             : base(exchangeBase)
         {
-            // TEST
-            //Items.Add(new BalanceEntryViewModel { Available = 50000, Amount = 5000, Currency = CurrencyBase.USD, Type = "Exchange" });
-            //Items.Add(new BalanceEntryViewModel { Available = 50000, Currency = CurrencyBase.EUR, Type = "Exchange" });
-            //Items.Add(new BalanceEntryViewModel { Available = 50000, Currency = CurrencyBase.USD, Type = "Exchange" });
-            //Items.Add(new BalanceEntryViewModel { Available = 50000, Currency = CurrencyBase.BTC, Type = "Exchange" });
-            //Items.Add(new BalanceEntryViewModel { Available = 50000, Currency = CurrencyBase.USD, Type = "Exchange" });
-            //Items.Add(new BalanceEntryViewModel { Available = 50000, Currency = CurrencyBase.LTC, Type = "Exchange" });
-            //Items.Add(new BalanceEntryViewModel { Available = 50000, Currency = CurrencyBase.USD, Type = "Exchange" });
-            //Items.Add(new BalanceEntryViewModel { Available = 50000, Currency = CurrencyBase.USD, Type = "Exchange" });
-            //Items.Add(new BalanceEntryViewModel { Available = 50000, Currency = CurrencyBase.USD, Type = "Exchange" });
+            // Items.Add(new BalanceEntryViewModel { Available = 50000, Currency = CurrencyBase.USD, Type = "Exchange" });
         }
 
         public override void OnUpdate()
