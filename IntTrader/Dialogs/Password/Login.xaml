@@ -38,7 +38,7 @@
                 Grid.ColumnSpan="2"
                 Grid.Row="2"
                 FontWeight="Bold"
-                Text="Encryption failed. The entered password probably is wrong.">
+                Text="Decryption failed. The entered password probably is wrong.">
             </TextBlock>
 
             <Grid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4">

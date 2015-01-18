@@ -49,11 +49,11 @@ namespace IntTrader.Controls.Exchange
         {
             Pairs = new PairManageViewModel(exchangeBase);
             this.MainViewModel = mainViewModel;
-            this.Exchange = exchangeBase;
             this.Header = Exchange.Name;
             //this.Foreground = Brushes.DodgerBlue;
 
             MainViewModel.TimerSeconds.Tick += TimerSecondsOnTick;
+
 
             Orders = new UserOrdersViewModel(Exchange);
             Ticker = new TickerViewModel(Exchange);
@@ -68,6 +68,8 @@ namespace IntTrader.Controls.Exchange
             if (!DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
                 UpdatePair();
+                //Exchange.ExchangeManager.Settings.
+                MainViewModel.SettingsService.SettingsLoaded += SettingsServiceOnSettingsLoaded;
                 Pairs.PairChanged += PairsOnPairChanged;
                 OrderBook.Ticker.LastTradeClickEvent += TickerOnLastTradeClickEvent;
                 OrderBook.SelectedAskChanged += OrderBookOnSelectedAskChanged;
@@ -78,6 +80,12 @@ namespace IntTrader.Controls.Exchange
                 RegisterUpdates();
                 Ticker.Dispatched += TickerOnDispatched;
             }
+        }
+
+        private void SettingsServiceOnSettingsLoaded(object sender, EventArgs e)
+        {
+            Balance.Update();
+            Orders.Update();
         }
 
         private void RegisterUpdates()
@@ -100,11 +108,16 @@ namespace IntTrader.Controls.Exchange
         {
             if (!Balance.SelectedBalanceEntry.Currency.IsCryptoCurrency)
             {
-                if (NewBuyOrder.Pair.LeftCurrency.Key == Balance.SelectedBalanceEntry.Currency.Key)
+                if (NewBuyOrder.Pair.RightCurrency.Key == Balance.SelectedBalanceEntry.Currency.Key)
                 {
-                    NewBuyOrder.Result = Balance.SelectedBalanceEntry.Amount;
-                    NewSellOrder.Result = Balance.SelectedBalanceEntry.Amount;
+                    NewBuyOrder.Result = Balance.SelectedBalanceEntry.Available;
+                    NewSellOrder.Result = Balance.SelectedBalanceEntry.Available;
                 }
+                //else
+                //{
+                //    NewBuyOrder.Result = Balance.SelectedBalanceEntry.Amount;
+                //    NewSellOrder.Result = Balance.SelectedBalanceEntry.Amount;
+                //}
             }
             else
             {
@@ -112,14 +125,14 @@ namespace IntTrader.Controls.Exchange
                 {
 
 
-                    NewBuyOrder.Amount = Balance.SelectedBalanceEntry.Amount;
-                    NewSellOrder.Amount = Balance.SelectedBalanceEntry.Amount;
+                    NewBuyOrder.Amount = Balance.SelectedBalanceEntry.Available;
+                    NewSellOrder.Amount = Balance.SelectedBalanceEntry.Available;
                 }
 
                 if (NewBuyOrder.Pair.RightCurrency.Key == Balance.SelectedBalanceEntry.Currency.Key)
                 {
-                    NewBuyOrder.Price = Balance.SelectedBalanceEntry.Amount;
-                    NewSellOrder.Price = Balance.SelectedBalanceEntry.Amount;
+                    NewBuyOrder.Price = Balance.SelectedBalanceEntry.Available;
+                    NewSellOrder.Price = Balance.SelectedBalanceEntry.Available;
 
                 }
             }
@@ -145,7 +158,7 @@ namespace IntTrader.Controls.Exchange
                 NewSellOrder.Price = Ticker.LastPrice;
             }
 
-            if (Ticker.Pair.RightCurrency.Key == NewBuyOrder.Pair.LeftCurrency.Key)
+            else if (Ticker.Pair.RightCurrency.Key == NewBuyOrder.Pair.LeftCurrency.Key)
             {
                 NewBuyOrder.Result = Ticker.LastPrice;
                 NewSellOrder.Result = Ticker.LastPrice;

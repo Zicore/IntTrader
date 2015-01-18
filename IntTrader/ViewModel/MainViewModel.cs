@@ -108,7 +108,7 @@ namespace IntTrader.ViewModel
         {
             Tabs = new ObservableCollection<ViewModelBase>();
             SettingsViewModel = new ExchangeSettingsViewModel(_exchangeManager);
-            SettingsService = new ExchangeSettingsService(_exchangeManager);
+            SettingsService = SettingsViewModel.SettingsService;
 
             CommandToolBarViewModel = new CommandToolBarViewModel(_exchangeManager, SettingsViewModel);
             Exchanges = new ObservableCollection<ExchangeViewModel>();
