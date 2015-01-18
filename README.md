@@ -52,7 +52,10 @@ IntTrader Exchange - Bitfinex
 ================
 Bitfinex is the first market, I have implemented. While I tried to keep focus basic functionality and abstractions, this application may tend a little towards the Bitfinex API.
 
-![Dashboard](http://upppor.it/4kPX.png)
+![Exchange - Bitfinex](http://upppor.it/4kPX.png)
+
+![Exchange - Bitfinex](http://upppor.it/mGsE.png)
+Trades are on the left side now, with a new basic trading sentiment indicator. 
 
 IntTrader Exchange - Kraken
 ================
