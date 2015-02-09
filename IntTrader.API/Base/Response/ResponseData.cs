@@ -11,6 +11,14 @@ namespace IntTrader.API.Base.Response
 {
     public class ResponseData
     {
+        private Exception _exception;
+
+        public Exception Exception
+        {
+            get { return _exception; }
+            protected set { _exception = value; }
+        }
+
         ResponseState _responseState = ResponseState.Success;
         private RequestBase _request;
         private String _value;
@@ -56,17 +64,26 @@ namespace IntTrader.API.Base.Response
 
         private void ReadExceptionResponse(WebException exception)
         {
-            if (exception == null || exception.Response == null)
+            if (exception == null)
             {
                 return;
             }
 
-            var stream = exception.Response.GetResponseStream();
-            if (stream != null)
+            Exception = exception;
+
+            if (exception.Response == null)
             {
-                using (var sr = new StreamReader(stream))
+                Value = exception.Message;
+            }
+            else
+            {
+                var stream = exception.Response.GetResponseStream();
+                if (stream != null)
                 {
-                    Value = sr.ReadToEnd();
+                    using (var sr = new StreamReader(stream))
+                    {
+                        Value = sr.ReadToEnd();
+                    }
                 }
             }
         }
