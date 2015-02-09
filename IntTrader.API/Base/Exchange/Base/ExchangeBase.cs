@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Runtime.Remoting.Messaging;
 using IntTrader.API.Base.Exchange.Orders;
 using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Request;
+using IntTrader.API.Base.Response;
 using IntTrader.API.Base.Settings;
+using IntTrader.API.Base.Transform;
 using IntTrader.API.Currency;
+using IntTrader.API.Event;
 using Newtonsoft.Json;
 
 namespace IntTrader.API.Base.Exchange.Base
@@ -22,12 +27,27 @@ namespace IntTrader.API.Base.Exchange.Base
 
     public class ExchangeBase
     {
-        PairManager _currencyManager = new PairManager();
-
-        public PairManager CurrencyManager
+        private readonly Dictionary<String, APIFunction> _commands = new Dictionary<String, APIFunction>
         {
-            get { return _currencyManager; }
-            set { _currencyManager = value; }
+            {"ticker"     ,APIFunction.RequestTicker    },
+            {"orderbook"  ,APIFunction.RequestOrderBook  },
+            {"orders"     ,APIFunction.RequestOpenOrders },
+            {"neworder"   ,APIFunction.RequestNewOrder   },
+            {"balance"    ,APIFunction.RequestBalances   },
+            {"cancelorder",APIFunction.CancelOrder       },
+        };
+
+        public Dictionary<String, APIFunction> Commands
+        {
+            get { return _commands; }
+        }
+
+        PairManager _pairManager = new PairManager();
+
+        public PairManager PairManager
+        {
+            get { return _pairManager; }
+            set { _pairManager = value; }
         }
 
         private OrderSide _defaultOrderSide;
@@ -108,7 +128,7 @@ namespace IntTrader.API.Base.Exchange.Base
 
         public virtual PairBase ConvertPair(PairBase pair)
         {
-            return CurrencyManager.GetPair(pair.Key);
+            return PairManager.GetPair(pair.Key);
         }
 
         public virtual bool IsPublicFunction(APIFunction function)
@@ -126,36 +146,66 @@ namespace IntTrader.API.Base.Exchange.Base
             return ExchangeAPI.IsValid;
         }
 
+        [Attributes.RequestCommand("orderbook", true)]
         public virtual OrderBookModel RequestOrderBook(PairBase pair)
         {
             return new OrderBookModel();
         }
 
+        [Attributes.RequestCommand("ticker", true)]
         public virtual TickerModel RequestTicker(PairBase pair)
         {
             return new TickerModel();
         }
 
+        [Attributes.RequestCommand("openorders", false)]
         public virtual OpenOrdersModel RequestOpenOrders()
         {
             return new OpenOrdersModel();
         }
 
+        [Attributes.RequestCommand("createorder", false)]
         public virtual OpenOrderEntryModel RequestNewOrder(CreateOrderRequestBase orderNewRequest)
         {
             return new OpenOrderEntryModel();
         }
 
+        public virtual OpenOrderEntryModel OnCreateOrder(ICreateOrder transform, ResponseBase response)
+        {
+            CreateOrderModel model;
+            try
+            {
+                model = transform.Transform();
+                model.WasSuccessful = true;
+            }
+            catch (Exception)
+            {
+                model = new CreateOrderModel { WasSuccessful = false, Message = response.ResponseData.Value };
+            }
+
+            if (response.ResponseData.ResponseState == ResponseState.Error)
+            {
+                model.WasSuccessful = false;
+            }
+
+            ExchangeManager.OnCreateOrderEvent(new CreateOrderEventArgs(this, model));
+
+            return model;
+        }
+
+        [Attributes.RequestCommand("balance", false)]
         public virtual BalanceModel RequestBalances()
         {
             return new BalanceModel();
         }
 
+        [Attributes.RequestCommand("cancelorder", false)]
         public virtual CancelOrderModel CancelOrder(CancelOrderRequestBase orderCancelRequest)
         {
             return new CancelOrderModel();
         }
 
+        [Attributes.RequestCommand("trades", false)]
         public virtual TradesModel RequestTrades(PairBase pair)
         {
             return new TradesModel();

@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace IntTrader.API.Base.Model
 {
-    public class OpenOrdersModel
+    public class OpenOrdersModel : ResponseModelBase
     {
         private List<OpenOrderEntryModel> _orders = new List<OpenOrderEntryModel>();
 

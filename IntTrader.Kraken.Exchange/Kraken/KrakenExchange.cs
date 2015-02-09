@@ -1,4 +1,5 @@
-﻿using IntTrader.API.Base.Exchange;
+﻿using System;
+using IntTrader.API.Base.Exchange;
 using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Exchange.Orders;
 using IntTrader.API.Base.Model;
@@ -6,6 +7,7 @@ using IntTrader.API.Base.Request;
 using IntTrader.API.Base.Settings;
 using IntTrader.API.Converter;
 using IntTrader.API.Currency;
+using IntTrader.API.Event;
 using IntTrader.API.Exchange.Kraken.Request;
 using IntTrader.API.Exchange.Kraken.Request.Authenticated;
 using IntTrader.API.Exchange.Kraken.Response;
@@ -48,12 +50,12 @@ namespace IntTrader.API.Exchange.Kraken
             OrderTypes.Add(new OrderType("trailing-stop-limit", "trailing-stop-limit"));
             OrderTypes.Add(new OrderType("stop-loss-and-limit", "stop-loss-and-limit"));
 
-            CurrencyManager.AddSupportedPair(PairBase.BTCEUR, "XBTEUR");
-            CurrencyManager.AddSupportedPair(PairBase.LTCEUR, "LTCEUR");
-            CurrencyManager.AddSupportedPair(PairBase.BTCUSD, "XBTUSD");
-            CurrencyManager.AddSupportedPair(PairBase.LTCUSD, "LTCUSD");
-            CurrencyManager.AddSupportedPair(PairBase.BTCLTC, "XBTLTC");
-            CurrencyManager.AddSupportedPair(PairBase.BTCXRP, "XBTXRP");
+            PairManager.AddSupportedPair(PairBase.BTCEUR, "XBTEUR");
+            PairManager.AddSupportedPair(PairBase.LTCEUR, "LTCEUR");
+            PairManager.AddSupportedPair(PairBase.BTCUSD, "XBTUSD");
+            PairManager.AddSupportedPair(PairBase.LTCUSD, "LTCUSD");
+            PairManager.AddSupportedPair(PairBase.BTCLTC, "XBTLTC");
+            PairManager.AddSupportedPair(PairBase.BTCXRP, "XBTXRP");
         }
 
         public override TickerModel RequestTicker(PairBase pair)
@@ -95,9 +97,11 @@ namespace IntTrader.API.Exchange.Kraken
                 Validate = orderNewRequest.Validate,
             };
 
-            var response = order.Request<CreateOrderResponse>().Transform();
-            return response;
+            var response = order.Request<CreateOrderResponse>();
+
+            return OnCreateOrder(response, response);
         }
+
 
         public override CancelOrderModel CancelOrder(CancelOrderRequestBase orderCancelRequest)
         {

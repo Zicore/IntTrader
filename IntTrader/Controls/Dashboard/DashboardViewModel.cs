@@ -31,7 +31,7 @@ namespace IntTrader.Controls.Dashboard
             DashboardItems = new ObservableCollection<DashboardEntryViewModel>();
             foreach (var exchange in MainViewModel.Exchanges)
             {
-                foreach (var pair in exchange.Exchange.CurrencyManager.SupportedPairs)
+                foreach (var pair in exchange.Exchange.PairManager.SupportedPairs)
                 {
                     var entry = new DashboardEntryViewModel(exchange, this, MainViewModel);
                     entry.UpdatePair(pair.Value);

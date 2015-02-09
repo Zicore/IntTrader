@@ -32,7 +32,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -49,9 +49,9 @@
   <ItemGroup>
     <Compile Include="Bitfinex\Request\Authenticated\AuthenticatedRequest.cs" />
     <Compile Include="Bitfinex\Request\Authenticated\Balance.cs" />
+    <Compile Include="Bitfinex\Request\Authenticated\CreateOrderRequest.cs" />
     <Compile Include="Bitfinex\Request\OrderBook.cs" />
     <Compile Include="Bitfinex\Request\Authenticated\OrderCancel.cs" />
-    <Compile Include="Bitfinex\Request\Authenticated\OrderNew.cs" />
     <Compile Include="Bitfinex\Request\Orders.cs" />
     <Compile Include="Bitfinex\Request\OrderStatus.cs" />
     <Compile Include="Bitfinex\Request\BitfinexRequestBase.cs" />
@@ -63,7 +63,7 @@
     <Compile Include="Bitfinex\Response\CancelOrderResponse.cs" />
     <Compile Include="Bitfinex\Response\OrderBookEntry.cs" />
     <Compile Include="Bitfinex\Response\OrderBookResponse.cs" />
-    <Compile Include="Bitfinex\Response\OrderNewResponse.cs" />
+    <Compile Include="Bitfinex\Response\CreateOrderResponse.cs" />
     <Compile Include="Bitfinex\Response\OrderResponse.cs" />
     <Compile Include="Bitfinex\Response\OrderResponseBase.cs" />
     <Compile Include="Bitfinex\Response\OrdersResponse.cs" />

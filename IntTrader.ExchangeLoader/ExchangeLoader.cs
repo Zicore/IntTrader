@@ -9,69 +9,66 @@ using NLog;
 
 namespace IntTrader.API.ExchangeLoader
 {
-    public class ExchangeLoader
+    public static class ExchangeLoader
     {
         private static bool _pluginsLoaded = false;
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-        public ExchangeLoader()
+        public static void LoadExchanges(ExchangeManager exchangeManager)
         {
-
-        }
-
-        public void LoadExchanges(ExchangeManager exchangeManager)
-        {
-            if (!_pluginsLoaded)
-            {
-                var lookupPaths = new string[]
-                    {
-                        AppDomain.CurrentDomain.BaseDirectory,
-                        Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Exchanges"),
-                    };
-                foreach (var lookupPath in lookupPaths)
+            var lookupPaths = new string[]
                 {
-                    if (Directory.Exists(lookupPath))
+                    AppDomain.CurrentDomain.BaseDirectory,
+                    Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Exchanges"),
+                };
+            foreach (var lookupPath in lookupPaths)
+            {
+                if (Directory.Exists(lookupPath))
+                {
+                    var exchanges = Directory.GetFiles(lookupPath, "*.Exchange.dll", SearchOption.TopDirectoryOnly);
+                    foreach (var exchange in exchanges)
                     {
-                        var plugins = Directory.GetFiles(lookupPath, "*.Exchange.dll", SearchOption.TopDirectoryOnly);
-                        foreach (var plugin in plugins)
-                        {
-                            try
-                            {
-
-                                var asm = Assembly.LoadFile(plugin);
-                                foreach (Type type in asm.GetTypes())
-                                {
-                                    try
-                                    {
-                                        if (type.BaseType == typeof(ExchangeBase))
-                                        {
-                                            if (!exchangeManager.LoadedExchanges.Contains(type.FullName))
-                                            {
-                                                var instance =
-                                                    asm.CreateInstance(type.FullName, false, BindingFlags.CreateInstance,
-                                                                       null,
-                                                                       new object[] { exchangeManager },
-                                                                       CultureInfo.CurrentCulture,
-                                                                       null)
-                                                    as ExchangeBase;
-                                                exchangeManager.AddExchange(instance);
-                                            }
-                                        }
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Log.Error(ex);
-                                    }
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Log.Error(ex);
-                            }
-                        }
+                        LoadAssemblyByName(exchangeManager, exchange);
                     }
                 }
-                _pluginsLoaded = true;
+            }
+        }
+
+        private static void LoadAssemblyByName(ExchangeManager exchangeManager, String assembly)
+        {
+            var asm = Assembly.LoadFile(assembly);
+            foreach (Type type in asm.GetTypes())
+            {
+                try
+                {
+                    if (type.BaseType == typeof(ExchangeBase))
+                    {
+                        CreateExchange(exchangeManager, asm, type);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+            }
+        }
+
+        private static void CreateExchange(ExchangeManager exchangeManager, Assembly asm, Type type)
+        {
+            if (!exchangeManager.LoadedExchanges.Contains(type.FullName))
+            {
+                var instance =
+                    asm.CreateInstance(type.FullName, false, BindingFlags.CreateInstance,
+                                       null,
+                                       new object[] { exchangeManager },
+                                       CultureInfo.CurrentCulture,
+                                       null)
+                    as ExchangeBase;
+                if (instance != null)
+                {
+                    Log.Info("Exchange {0} loaded", instance.Name);
+                    exchangeManager.AddExchange(instance);
+                }
             }
         }
     }

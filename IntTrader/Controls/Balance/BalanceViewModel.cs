@@ -74,7 +74,7 @@ namespace IntTrader.Controls.Balance
                 {
                     Amount = balanceEntry.Amount,
                     Available = balanceEntry.Available,
-                    Currency = Exchange.CurrencyManager.GetCurrency(balanceEntry.CurrencyKey),
+                    Currency = Exchange.PairManager.GetCurrency(balanceEntry.CurrencyKey),
                     Type = balanceEntry.WalletType
                 };
                 if (balanceEntry.Amount > 0)

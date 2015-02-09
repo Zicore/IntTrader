@@ -25,7 +25,7 @@ namespace IntTrader.ViewModel
         public PairManageViewModel(ExchangeBase exchangeBase)
             : base(exchangeBase)
         {
-            foreach (var supportedPair in Exchange.CurrencyManager.SupportedPairs.Values)
+            foreach (var supportedPair in Exchange.PairManager.SupportedPairs.Values)
             {
                 Pairs.Add(PairViewModel.FromPair(supportedPair));
             }

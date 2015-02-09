@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace IntTrader.API.Exchange.Kraken.Response
 {
-    public class CreateOrderResponse : KrakenResponse, IOrderNew
+    public class CreateOrderResponse : KrakenResponse, ICreateOrder
     {
         public CreateOrderModel Transform()
         {

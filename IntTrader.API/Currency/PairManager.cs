@@ -101,6 +101,22 @@ namespace IntTrader.API.Currency
             throw new PairNotSupportedException() { PairKey = key };
         }
 
+        public bool IsPairSupported(String key)
+        {
+            key = key.ToUpperInvariant();
+
+            if (_supportedPairsReverse.ContainsKey(key))
+            {
+                key = _supportedPairsReverse[key];
+            }
+
+            if (_supportedPairs.ContainsKey(key))
+            {
+                return true;
+            }
+            return false;
+        }
+
         /// <summary>
         /// Finds the right Currency by the official naming. The most API's should match ISO 4217. If not it is possible to add another alternative key here
         /// </summary>
