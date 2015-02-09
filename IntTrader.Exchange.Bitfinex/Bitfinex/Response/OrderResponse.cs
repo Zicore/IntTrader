@@ -27,7 +27,7 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
             return new OpenOrderEntryModel
             {
                 AverageExecutionPrice = AvgerageExecutionPrice,
-                Exchange = ExchangeString,
+                ExchangeString = ExchangeString,
                 ExecutedAmount = ExecutedAmount,
                 IsCancelled = IsCancelled,
                 IsLive = IsLive,

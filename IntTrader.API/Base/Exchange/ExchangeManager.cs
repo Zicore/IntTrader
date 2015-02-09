@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using IntTrader.API.Base.Exchange.Base;
+using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Settings;
+using IntTrader.API.Event;
 using Zicore.Settings.Json;
+using Zicore.WPF.Base.Event;
 
 namespace IntTrader.API.Base.Exchange
 {
@@ -18,6 +21,10 @@ namespace IntTrader.API.Base.Exchange
             Exchanges.Add(exchangeBase);
             LoadedExchanges.Add(exchangeBase.GetType().FullName);
         }
+
+
+
+        public event EventHandler<CreateOrderEventArgs> CreateOrderEvent;
 
         List<ExchangeBase> _exchanges = new List<ExchangeBase>();
         public List<ExchangeBase> Exchanges
@@ -85,6 +92,12 @@ namespace IntTrader.API.Base.Exchange
         public void UnloadSettings()
         {
             Settings = null;
+        }
+
+        public void OnCreateOrderEvent(CreateOrderEventArgs e)
+        {
+            var handler = CreateOrderEvent;
+            if (handler != null) handler(this, e);
         }
     }
 }

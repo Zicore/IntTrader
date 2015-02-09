@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 
 namespace IntTrader.API.Exchange.Bitfinex.Request.Authenticated
 {
+
     public enum Side
     {
         Buy = 1,
@@ -17,23 +18,9 @@ namespace IntTrader.API.Exchange.Bitfinex.Request.Authenticated
         All
     }
 
-    //public enum OrderType
-    //{
-    //    Market = 1,
-    //    Limit = 2,
-    //    Stop = 3,
-    //    TrailingStop = 4,
-    //    FillOrKill = 5,
-    //    ExchangeMarket = 6,
-    //    ExchangeLimit = 7,
-    //    ExchangeStop = 8,
-    //    ExchangeTrailingStop = 9,
-    //    ExchangeFillOrKill = 10
-    //}
-
-    public class OrderNew : AuthenticatedRequest
+    public class CreateOrderRequest : AuthenticatedRequest
     {
-        public OrderNew(ExchangeBase exchange)
+        public CreateOrderRequest(ExchangeBase exchange)
             : base(exchange)
         {
             RequestUri = "/v1/order/new";

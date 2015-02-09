@@ -49,8 +49,8 @@ namespace IntTrader.Controls.UserOrders
             return new OrderViewModel(exchange)
                 {
                     OrderId = model.OrderId,
-                    Pair = exchange.CurrencyManager.GetPair(model.Symbol),
-                    ExchangeName = model.Exchange,
+                    Pair = exchange.PairManager.GetPair(model.Symbol),
+                    ExchangeName = model.ExchangeString,
                     Price = model.Price,
                     AvgerageExecutionPrice = model.AverageExecutionPrice,
                     Type = model.Type,

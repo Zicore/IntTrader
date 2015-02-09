@@ -13,8 +13,10 @@ using IntTrader.Controls.CommandToolBar;
 using IntTrader.Controls.Dashboard;
 using IntTrader.Controls.Exchange;
 using IntTrader.Controls.ExchangeSettings;
+using IntTrader.Controls.OrderNotifications;
 using IntTrader.Controls.Request;
 using IntTrader.Controls.Trades;
+using IntTrader.Dialogs.OrderNotifications;
 using IntTrader.Service;
 
 namespace IntTrader.ViewModel
@@ -38,6 +40,9 @@ namespace IntTrader.ViewModel
         public DashboardViewModel DashboardViewModel { get; set; }
         public AddressViewModel AddressViewModel { get; set; }
         public RequestViewModel RequestViewModel { get; set; }
+
+        public OrderNotificationWindowViewModel OrderNotificationWindowViewModel { get; set; }
+        public OrderNotificationWindow OrderNotificationWindow { get; set; }
 
 
         public String WindowText
@@ -104,24 +109,32 @@ namespace IntTrader.ViewModel
             OnPropertyChanged("WindowText");
         }
 
+        public void ShowNotifications()
+        {
+            OrderNotificationWindow.Visibility = Visibility.Visible;
+        }
+
         public MainViewModel()
         {
             Tabs = new ObservableCollection<ViewModelBase>();
             SettingsViewModel = new ExchangeSettingsViewModel(_exchangeManager);
             SettingsService = SettingsViewModel.SettingsService;
 
-            CommandToolBarViewModel = new CommandToolBarViewModel(_exchangeManager, SettingsViewModel);
+
             Exchanges = new ObservableCollection<ExchangeViewModel>();
-
-
 
             if (!DesignerProperties.GetIsInDesignMode(new DependencyObject()))
             {
+                CommandToolBarViewModel = new CommandToolBarViewModel(this, _exchangeManager, SettingsViewModel);
+
                 RequestViewModel = new RequestViewModel(this, ExchangeManager);
                 AddressViewModel = new AddressViewModel(_exchangeManager, this);
 
-                var loader = new ExchangeLoader();
-                loader.LoadExchanges(ExchangeManager);
+                OrderNotificationWindowViewModel = new OrderNotificationWindowViewModel(this, _exchangeManager);
+                OrderNotificationWindow = new OrderNotificationWindow { DataContext = OrderNotificationWindowViewModel };
+
+
+                ExchangeLoader.LoadExchanges(ExchangeManager);
 
                 // Exchanges
                 foreach (var exchangeBase in ExchangeManager.Exchanges)

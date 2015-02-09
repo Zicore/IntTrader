@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Attributes\Request.cs" />
     <Compile Include="Base\Request\RequestBase.cs" />
     <Compile Include="Base\Request\RequestMonitor.cs" />
     <Compile Include="Base\Response\ResponseBase.cs" />
@@ -61,13 +62,14 @@
     <Compile Include="Base\Transform\IBalanceEntry.cs" />
     <Compile Include="Base\Transform\IOrderBookEntry.cs" />
     <Compile Include="Base\Transform\IOrder.cs" />
-    <Compile Include="Base\Transform\IOrderNew.cs" />
+    <Compile Include="Base\Transform\ICreateOrder.cs" />
     <Compile Include="Base\Transform\IOrders.cs" />
     <Compile Include="Base\Transform\ITicker.cs" />
     <Compile Include="Currency\PairManager.cs" />
     <Compile Include="Currency\PairBase.cs" />
     <Compile Include="Converter\DateTimeConverter.cs" />
     <Compile Include="Converter\DecimalConverter.cs" />
+    <Compile Include="Event\CreateOrderEventArgs.cs" />
     <Compile Include="Event\RequestEventArgs.cs" />
     <Compile Include="Exceptions\CurrencyNotSupported.cs" />
     <Compile Include="Exceptions\PairNotSupportedException.cs" />
@@ -115,6 +117,10 @@
     <ProjectReference Include="..\Zicore.Settings.Json\Zicore.Settings.Json.csproj">
       <Project>{831d83a0-7348-4d8c-9857-7b336f7d91ea}</Project>
       <Name>Zicore.Settings.Json</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zicore.WPF.Base\Zicore.WPF.Base.csproj">
+      <Project>{6970fa5a-5aca-46f9-8ee3-b1e256fbb463}</Project>
+      <Name>Zicore.WPF.Base</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

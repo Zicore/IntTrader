@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace IntTrader.API.Exchange.Bitfinex.Response
 {
-    public class OrderNewResponse : OrderStatusResponse, IOrderNew
+    public class CreateOrderResponse : OrderStatusResponse, ICreateOrder
     {
         private String _orderId;
 
@@ -25,7 +25,7 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
                 OrderId = OrderId,
                 AverageExecutionPrice = AverageExecutionPrice,
                 DateTime = DateTimeConverter.ConvertTimestamp(Timestamp),
-                Exchange = ExchangeString,
+                ExchangeString = ExchangeString,
                 ExecutedAmount = ExecutedAmount,
                 IsCancelled = IsCancelled,
                 IsLive = IsLive,
@@ -36,6 +36,7 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
                 Type = Type,
                 WasForced = WasForced,
                 OrderStatus = ConvertStatus(this),
+                WasSuccessful = true
             };
         }
 

@@ -1,11 +1,15 @@
-﻿using IntTrader.API.Base.Exchange;
+﻿using System;
+using IntTrader.API.Base.Exchange;
 using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Exchange.Orders;
 using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Request;
+using IntTrader.API.Base.Response;
 using IntTrader.API.Base.Settings;
+using IntTrader.API.Base.Transform;
 using IntTrader.API.Converter;
 using IntTrader.API.Currency;
+using IntTrader.API.Event;
 using IntTrader.API.Exchange.Bitfinex.Request;
 using IntTrader.API.Exchange.Bitfinex.Request.Authenticated;
 using IntTrader.API.Exchange.Bitfinex.Response;
@@ -52,11 +56,11 @@ namespace IntTrader.API.Exchange.Bitfinex
             OrderTypes.Add(new OrderType("trailing-stop", "trailing-stop"));
             OrderTypes.Add(new OrderType("fill-or-kill", "fill-or-kill"));
 
-            CurrencyManager.AddSupportedPair(PairBase.BTCUSD, "btcusd");
-            CurrencyManager.AddSupportedPair(PairBase.LTCUSD, "ltcusd");
-            CurrencyManager.AddSupportedPair(PairBase.LTCBTC, "ltcbtc");
-            CurrencyManager.AddSupportedPair(PairBase.DRKUSD, "drkusd");
-            CurrencyManager.AddSupportedPair(PairBase.DRKBTC, "drkbtc");
+            PairManager.AddSupportedPair(PairBase.BTCUSD, "btcusd");
+            PairManager.AddSupportedPair(PairBase.LTCUSD, "ltcusd");
+            PairManager.AddSupportedPair(PairBase.LTCBTC, "ltcbtc");
+            PairManager.AddSupportedPair(PairBase.DRKUSD, "drkusd");
+            PairManager.AddSupportedPair(PairBase.DRKBTC, "drkbtc");
         }
 
         public static readonly ExchangeType ExchangeTypeBitfinex = new ExchangeType("bitfinex", "Bitfinex");
@@ -93,7 +97,7 @@ namespace IntTrader.API.Exchange.Bitfinex
 
         public override OpenOrderEntryModel RequestNewOrder(CreateOrderRequestBase orderNewRequest)
         {
-            var order = new OrderNew(this)
+            var order = new CreateOrderRequest(this)
                 {
                     Amount = DecimalConverter.Convert(orderNewRequest.Amount),
                     Price = DecimalConverter.Convert(orderNewRequest.Price),
@@ -104,7 +108,9 @@ namespace IntTrader.API.Exchange.Bitfinex
                     Symbol = orderNewRequest.Pair
                 };
 
-            return order.Request<OrderNewResponse>().Transform();
+            var response = order.Request<CreateOrderResponse>();
+
+            return OnCreateOrder(response, response);
         }
 
         public override BalanceModel RequestBalances()

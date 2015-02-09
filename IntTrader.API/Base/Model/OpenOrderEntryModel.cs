@@ -1,4 +1,5 @@
 ﻿using System;
+using IntTrader.API.Base.Exchange.Base;
 
 namespace IntTrader.API.Base.Model
 {
@@ -9,10 +10,13 @@ namespace IntTrader.API.Base.Model
 
         }
 
+        private ExchangeBase _exchange;
+
+        private bool _wasSuccessful;
 
         private String _orderId;
         private String _symbol;
-        private String _exchange;
+        private String _exchangeString;
         private decimal _price;
         private decimal _avgerageExecutionPrice;
         private String _type;
@@ -29,16 +33,36 @@ namespace IntTrader.API.Base.Model
         private decimal _remainingAmount;
         private decimal _originalAmount;
 
+        private String _message;
+
+        public string Message
+        {
+            get { return _message; }
+            set { _message = value; }
+        }
+
+        public ExchangeBase Exchange
+        {
+            get { return _exchange; }
+            set { _exchange = value; }
+        }
+
+        public bool WasSuccessful
+        {
+            get { return _wasSuccessful; }
+            set { _wasSuccessful = value; }
+        }
+
         public String OrderId
         {
             get { return _orderId; }
             set { _orderId = value; }
         }
 
-        public string Exchange
+        public string ExchangeString
         {
-            get { return _exchange; }
-            set { _exchange = value; }
+            get { return _exchangeString; }
+            set { _exchangeString = value; }
         }
 
         public string Symbol

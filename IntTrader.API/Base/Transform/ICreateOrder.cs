@@ -2,7 +2,7 @@
 
 namespace IntTrader.API.Base.Transform
 {
-    public interface IOrderNew
+    public interface ICreateOrder
     {
         CreateOrderModel Transform();
     }

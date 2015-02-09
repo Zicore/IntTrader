@@ -42,7 +42,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=3.2.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -95,6 +95,11 @@
     <Compile Include="Controls\NewOrder\NewSellOrderView.xaml.cs">
       <DependentUpon>NewSellOrderView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\OrderNotifications\OrderNotificationEntryViewModel.cs" />
+    <Compile Include="Controls\OrderNotifications\OrderNotificationView.xaml.cs">
+      <DependentUpon>OrderNotificationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\OrderNotifications\OrderNotificationViewModel.cs" />
     <Compile Include="Controls\Request\RequestEntryViewModel.cs" />
     <Compile Include="Controls\Request\RequestView.xaml.cs">
       <DependentUpon>RequestView.xaml</DependentUpon>
@@ -109,6 +114,10 @@
       <DependentUpon>TradesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\Trades\TradesViewModel.cs" />
+    <Compile Include="Dialogs\OrderNotifications\OrderNotificationWindow.xaml.cs">
+      <DependentUpon>OrderNotificationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\OrderNotifications\OrderNotificationWindowViewModel.cs" />
     <Compile Include="Service\ApplicationSettingsService.cs" />
     <Compile Include="Service\UpdateController.cs" />
     <Compile Include="Service\UpdateEntry.cs" />
@@ -194,6 +203,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Controls\OrderNotifications\OrderNotificationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Request\RequestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +216,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Trades\TradesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\OrderNotifications\OrderNotificationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

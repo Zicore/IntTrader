@@ -1,4 +1,5 @@
-﻿using IntTrader.API.Base.Model;
+﻿using System;
+using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Response;
 using IntTrader.API.Event;
 using Newtonsoft.Json;
@@ -19,7 +20,7 @@ namespace IntTrader.API.Base.Request
         {
             T result = null;
 
-            if (responseData.HasResult)
+            if (!String.IsNullOrEmpty(responseData.Value))
             {
                 result = JsonConvert.DeserializeObject<T>(responseData.Value);
             }
