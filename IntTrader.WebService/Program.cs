@@ -39,9 +39,10 @@ namespace IntTrader.WebService
                 Console.WriteLine("Commands available:");
                 foreach (var e in broker.Exchanges.Items)
                 {
-                    foreach (var command in e.Value.Commands)
+                    foreach (var function in e.Value.AvailableFunctions)
                     {
-                        Console.WriteLine("{0}/{1}", e.Key, command.Key);
+                        var command = ExchangeManager.Functions[function];
+                        Console.WriteLine("{0}/{1}", e.Key, command);
                     }
                 }
                 line = Console.ReadLine();

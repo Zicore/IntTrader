@@ -1,28 +1,21 @@
 ﻿using IntTrader.WebService.Base;
+using Microsoft.Owin.Hosting;
 
 namespace IntTrader.Web
 {
     using System;
-    using Nancy.Hosting.Self;
+    //using Nancy.Hosting.Self;
 
     class Program
     {
         static void Main(string[] args)
         {
-            var uri =
-                new Uri("http://localhost:80");
+            var url = "http://+:80";
 
-            HostConfiguration configuration = new HostConfiguration();
-            configuration.AllowChunkedEncoding = false; // TEMP FIX
-            configuration.RewriteLocalhost = true;
-            configuration.UnhandledExceptionCallback += UnhandledExceptionCallback;
-
-            var bootstrapper = new Bootstrapper();
-            using (var host = new NancyHost(bootstrapper, configuration, uri))
+            using (WebApp.Start<Startup>(url))
             {
-                host.Start();
-                Console.WriteLine("Your application is running on " + uri);
-                Console.WriteLine("Press any [Enter] to close the host.");
+                Console.WriteLine("Running on {0}", url);
+                Console.WriteLine("Press enter to exit");
                 Console.ReadLine();
             }
         }

@@ -61,10 +61,12 @@ namespace IntTrader.WebService.Base
         /// <returns></returns>
         public ResponseModelBase Execute(ExchangeBase exchange, String command, params object[] args)
         {
-            if (!exchange.Commands.ContainsKey(command))
+
+
+            if (!exchange.IsCommandAvailable(command))
                 throw new CommandNotSupportedException(command);
 
-            APIFunction func = exchange.Commands[command];
+            APIFunction func = exchange.GetFunction(command);
 
             switch (func)
             {

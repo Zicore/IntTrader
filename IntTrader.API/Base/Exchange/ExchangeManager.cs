@@ -16,6 +16,31 @@ namespace IntTrader.API.Base.Exchange
 
         }
 
+        public static Dictionary<String, APIFunction> Commands { get; private set; }
+        public static Dictionary<APIFunction, String> Functions { get; private set; }
+
+        static ExchangeManager()
+        {
+            Functions = new Dictionary<APIFunction, String>
+            {
+                {APIFunction.RequestTicker    ,"ticker"     },
+                {APIFunction.RequestOrderBook ,"orderbook"   },
+                {APIFunction.RequestOpenOrders,"orders"      },
+                {APIFunction.RequestNewOrder  ,"neworder"    },
+                {APIFunction.RequestBalances  ,"balance"     },
+                {APIFunction.CancelOrder      ,"cancelorder" },
+            };
+            Commands = new Dictionary<String, APIFunction>
+            {
+                {"ticker"     ,APIFunction.RequestTicker    },
+                {"orderbook"  ,APIFunction.RequestOrderBook  },
+                {"orders"     ,APIFunction.RequestOpenOrders },
+                {"neworder"   ,APIFunction.RequestNewOrder   },
+                {"balance"    ,APIFunction.RequestBalances   },
+                {"cancelorder",APIFunction.CancelOrder       },
+            };
+        }
+
         public void AddExchange(ExchangeBase exchangeBase)
         {
             Exchanges.Add(exchangeBase);

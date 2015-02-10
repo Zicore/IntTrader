@@ -27,19 +27,31 @@ namespace IntTrader.API.Base.Exchange.Base
 
     public class ExchangeBase
     {
-        private readonly Dictionary<String, APIFunction> _commands = new Dictionary<String, APIFunction>
+        static ExchangeBase()
         {
-            {"ticker"     ,APIFunction.RequestTicker    },
-            {"orderbook"  ,APIFunction.RequestOrderBook  },
-            {"orders"     ,APIFunction.RequestOpenOrders },
-            {"neworder"   ,APIFunction.RequestNewOrder   },
-            {"balance"    ,APIFunction.RequestBalances   },
-            {"cancelorder",APIFunction.CancelOrder       },
-        };
 
-        public Dictionary<String, APIFunction> Commands
+        }
+
+        public APIFunction GetFunction(String command)
         {
-            get { return _commands; }
+            return ExchangeManager.Commands[command];
+        }
+
+        public String GetCommand(APIFunction function)
+        {
+            return ExchangeManager.Functions[function];
+        }
+
+        public bool IsCommandAvailable(String command)
+        {
+            if (!ExchangeManager.Commands.ContainsKey(command))
+            {
+                return false;
+            }
+
+            var function = ExchangeManager.Commands[command];
+
+            return IsAvailable(function);
         }
 
         PairManager _pairManager = new PairManager();
