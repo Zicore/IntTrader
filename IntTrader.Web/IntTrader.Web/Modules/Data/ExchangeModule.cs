@@ -50,13 +50,13 @@ namespace IntTrader.Web.Modules.Data
                 return HttpStatusCode.Forbidden;
             };
 
-            Get["/{exchange}/neworder/{amount:decimal}/{price:decimal}"] = _ =>
+            Get["/{exchange}/neworder/{side}/{type}/{pair}/{amount:decimal}/{price:decimal}"] = _ =>
             {
                 if (Request.IsLocal())
                 {
                     var command = ExchangeManager.Functions[APIFunction.RequestNewOrder];
                     ResponseModelBase responseModel;
-                    if (WebService.Broker.TryExecute(out responseModel, _.exchange.ToString(), command, (decimal)_.amount, (decimal)_.price))
+                    if (WebService.Broker.TryExecute(out responseModel, (String)_.exchange, command, (String)_.side, (String)_.type, (String)_.pair, (decimal)_.amount, (decimal)_.price))
                     {
                         var response = (Response)JsonConvert.SerializeObject(responseModel);
                         response.ContentType = "application/json";

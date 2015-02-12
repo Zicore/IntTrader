@@ -42,9 +42,9 @@ namespace IntTrader.WebService.Base.Exchange
 
         public static ResponseModelBase RequestNewOrder(ExchangeBase exchange, APIFunction command, object[] args)
         {
-            String pairKey = RequireArgument<String>(exchange, command, args, 0);
-            String sideKey = RequireArgument<String>(exchange, command, args, 1);
-            String typeKey = RequireArgument<String>(exchange, command, args, 2);
+            String sideKey = RequireArgument<String>(exchange, command, args, 0);
+            String typeKey = RequireArgument<String>(exchange, command, args, 1);
+            String pairKey = RequireArgument<String>(exchange, command, args, 2);
             decimal amount = RequireArgument<decimal>(exchange, command, args, 3);
             decimal price = RequireArgument<decimal>(exchange, command, args, 4);
 

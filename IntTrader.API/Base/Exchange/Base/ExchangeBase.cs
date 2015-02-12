@@ -88,7 +88,7 @@ namespace IntTrader.API.Base.Exchange.Base
 
         public void AddOrderSide(OrderSide orderSide)
         {
-            OrderSides.Add(orderSide.Name, orderSide);
+            OrderSides.Add(orderSide.Value, orderSide);
         }
 
         public OrderSide GetOrderSide(String orderSide)
@@ -101,7 +101,7 @@ namespace IntTrader.API.Base.Exchange.Base
 
         public void AddOrderType(OrderType orderType)
         {
-            OrderTypes.Add(orderType.Name, orderType);
+            OrderTypes.Add(orderType.Value, orderType);
         }
 
         public OrderType GetOrderType(String orderType)

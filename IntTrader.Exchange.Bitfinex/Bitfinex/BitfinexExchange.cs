@@ -39,8 +39,8 @@ namespace IntTrader.API.Exchange.Bitfinex
             AvailableFunctions.Add(APIFunction.RequestNewOrder);
             AvailableFunctions.Add(APIFunction.CancelOrder);
 
-            OrderSides.Add(OrderSide.Buy.Name, OrderSide.Buy);
-            OrderSides.Add(OrderSide.Sell.Name, OrderSide.Sell);
+            AddOrderSide(OrderSide.Buy);
+            AddOrderSide(OrderSide.Sell);
 
             DefaultOrderType = OrderExchangeLimit;
 
@@ -67,11 +67,11 @@ namespace IntTrader.API.Exchange.Bitfinex
         public static readonly ExchangeType ExchangeTypeBitstamp = new ExchangeType("bitstamp", "Bitstamp");
         public static readonly ExchangeType ExchangeTypeAll = new ExchangeType("all", "All");
 
-        public static readonly OrderType OrderExchangeMarket = new OrderType("exchange market", "exchange market");
-        public static readonly OrderType OrderExchangeLimit = new OrderType("exchange limit", "exchange limit");
-        public static readonly OrderType OrderExchangeStop = new OrderType("exchange stop", "exchange stop");
-        public static readonly OrderType OrderExchangeTrailingStop = new OrderType("exchange trailing-stop", "exchange trailing-stop");
-        public static readonly OrderType OrderExchangeFillOrKill = new OrderType("exchange fill-or-kill", "exchange fill-or-kill");
+        public static readonly OrderType OrderExchangeMarket = new OrderType("exchange-market", "exchange market");
+        public static readonly OrderType OrderExchangeLimit = new OrderType("exchange-limit", "exchange limit");
+        public static readonly OrderType OrderExchangeStop = new OrderType("exchange-stop", "exchange stop");
+        public static readonly OrderType OrderExchangeTrailingStop = new OrderType("exchange-trailing-stop", "exchange trailing-stop");
+        public static readonly OrderType OrderExchangeFillOrKill = new OrderType("exchange-fill-or-kill", "exchange fill-or-kill");
 
         public override ExchangeType DefaultExchangeType
         {
