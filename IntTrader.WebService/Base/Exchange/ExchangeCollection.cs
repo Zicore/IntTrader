@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using IntTrader.API.Base.Exchange.Base;
 using NLog;
 
-namespace IntTrader.WebService.Base.Request
+namespace IntTrader.WebService.Base.Exchange
 {
     public class ExchangeCollection
     {

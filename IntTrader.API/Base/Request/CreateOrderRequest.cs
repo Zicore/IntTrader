@@ -9,6 +9,7 @@ namespace IntTrader.API.Base.Request
         private String _pair;
         private decimal _amount;
         private decimal _price;
+        private decimal _price2;
         private ExchangeType _exchangeType;
         private OrderSide _side;
         private OrderType _ordertype;
@@ -31,6 +32,12 @@ namespace IntTrader.API.Base.Request
         {
             get { return _price; }
             set { _price = value; }
+        }
+
+        public decimal Price2
+        {
+            get { return _price2; }
+            set { _price2 = value; }
         }
 
         public ExchangeType ExchangeType

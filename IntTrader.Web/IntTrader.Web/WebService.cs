@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using IntTrader.API.Base.Exchange;
 using IntTrader.WebService.Base;
 
 namespace IntTrader.Web
@@ -11,6 +12,11 @@ namespace IntTrader.Web
         static WebService()
         {
             Broker = new WebBroker();
+        }
+
+        public static void LoadExchangeSettings(String hash)
+        {
+            Broker.ExchangeManager.LoadSettings(hash);
         }
 
         public static WebBroker Broker { get; set; }

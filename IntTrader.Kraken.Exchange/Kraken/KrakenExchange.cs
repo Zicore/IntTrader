@@ -34,21 +34,22 @@ namespace IntTrader.API.Exchange.Kraken
             AvailableFunctions.Add(APIFunction.RequestBalances);
             AvailableFunctions.Add(APIFunction.RequestOpenOrders);
             AvailableFunctions.Add(APIFunction.RequestNewOrder);
+            AvailableFunctions.Add(APIFunction.CancelOrder);
 
-            OrderSides.Add(OrderSide.Buy);
-            OrderSides.Add(OrderSide.Sell);
+            AddOrderSide(OrderSide.Buy);
+            AddOrderSide(OrderSide.Sell);
 
-            DefaultOrderType = new OrderType("limit", "limit");
-            OrderTypes.Add(new OrderType("market", "market"));
-            OrderTypes.Add(DefaultOrderType); // limit
-            OrderTypes.Add(new OrderType("stop-loss", "stop Loss"));
-            OrderTypes.Add(new OrderType("take-profit", "take profit"));
-            OrderTypes.Add(new OrderType("stop-loss-profit", "stop-loss-profit"));
-            OrderTypes.Add(new OrderType("stop-loss-profit-limit", "stop-loss-profit-limit"));
-            OrderTypes.Add(new OrderType("stop-loss-limit", "stop-loss-limit"));
-            OrderTypes.Add(new OrderType("trailing-stop", "trailing-stop"));
-            OrderTypes.Add(new OrderType("trailing-stop-limit", "trailing-stop-limit"));
-            OrderTypes.Add(new OrderType("stop-loss-and-limit", "stop-loss-and-limit"));
+            DefaultOrderType = OrderLimit;
+            AddOrderType(OrderMarket);
+            AddOrderType(OrderLimit); // limit
+            AddOrderType(OrderStopLoss);
+            AddOrderType(OrderTakeProfit);
+            AddOrderType(OrderStopLossProfit);
+            AddOrderType(OrderStopLossProfitLimit);
+            AddOrderType(OrderStopLossLimit);
+            AddOrderType(OrderTrailingStop);
+            AddOrderType(OrderTrailingStopLimit);
+            AddOrderType(OrderStopLossAndLimit);
 
             PairManager.AddSupportedPair(PairBase.BTCEUR, "XBTEUR");
             PairManager.AddSupportedPair(PairBase.LTCEUR, "LTCEUR");
@@ -57,6 +58,20 @@ namespace IntTrader.API.Exchange.Kraken
             PairManager.AddSupportedPair(PairBase.BTCLTC, "XBTLTC");
             PairManager.AddSupportedPair(PairBase.BTCXRP, "XBTXRP");
         }
+
+        public static readonly OrderType OrderMarket = new OrderType("market", "market");
+        public static readonly OrderType OrderLimit = new OrderType("limit", "limit");
+        public static readonly OrderType OrderStopLoss = new OrderType("stop-loss", "stop Loss");
+
+        public static readonly OrderType OrderTakeProfit = new OrderType("take-profit", "take profit");
+        public static readonly OrderType OrderStopLossProfit = new OrderType("stop-loss-profit", "stop-loss-profit");
+        public static readonly OrderType OrderStopLossProfitLimit = new OrderType("stop-loss-profit-limit", "stop-loss-profit-limit");
+
+        public static readonly OrderType OrderStopLossLimit = new OrderType("stop-loss-limit", "stop-loss-limit");
+        public static readonly OrderType OrderTrailingStop = new OrderType("trailing-stop", "trailing-stop");
+        public static readonly OrderType OrderTrailingStopLimit = new OrderType("trailing-stop-limit", "trailing-stop-limit");
+
+        public static readonly OrderType OrderStopLossAndLimit = new OrderType("stop-loss-and-limit", "stop-loss-and-limit");
 
         public override TickerModel RequestTicker(PairBase pair)
         {

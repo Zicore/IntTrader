@@ -83,20 +83,30 @@ namespace IntTrader.API.Base.Exchange.Base
             get { return null; }
         }
 
-        private readonly List<OrderSide> _orderSides = new List<OrderSide>();
-
         [JsonIgnore]
-        public List<OrderSide> OrderSides
+        public Dictionary<String, OrderSide> OrderSides { get; private set; }
+
+        public void AddOrderSide(OrderSide orderSide)
         {
-            get { return _orderSides; }
+            OrderSides.Add(orderSide.Name, orderSide);
         }
 
-        private readonly List<OrderType> _orderTypes = new List<OrderType>();
+        public OrderSide GetOrderSide(String orderSide)
+        {
+            return OrderSides[orderSide];
+        }
 
         [JsonIgnore]
-        public List<OrderType> OrderTypes
+        public Dictionary<String, OrderType> OrderTypes { get; private set; }
+
+        public void AddOrderType(OrderType orderType)
         {
-            get { return _orderTypes; }
+            OrderTypes.Add(orderType.Name, orderType);
+        }
+
+        public OrderType GetOrderType(String orderType)
+        {
+            return OrderTypes[orderType];
         }
 
         private readonly HashSet<APIFunction> _publicFunctions = new HashSet<APIFunction>();
@@ -135,6 +145,8 @@ namespace IntTrader.API.Base.Exchange.Base
 
         public ExchangeBase(ExchangeManager exchangeManager)
         {
+            OrderSides = new Dictionary<string, OrderSide>();
+            OrderTypes = new Dictionary<string, OrderType>();
             ExchangeManager = exchangeManager;
         }
 

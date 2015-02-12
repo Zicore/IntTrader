@@ -134,6 +134,10 @@
       <Project>{326a62cc-734b-4e12-b22d-7a3b8c5ad1af}</Project>
       <Name>IntTrader.WebService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Zicore.Security\Zicore.Security.csproj">
+      <Project>{48c98f71-2210-4806-8ed3-6aeed2729801}</Project>
+      <Name>Zicore.Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="content\img\nancy-logo.png">

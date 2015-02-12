@@ -21,7 +21,7 @@ namespace IntTrader.Controls.NewOrder
         {
             foreach (var orderType in Exchange.OrderTypes)
             {
-                _orderTypes.Add(orderType);
+                _orderTypes.Add(orderType.Value);
             }
             OrderType = Exchange.DefaultOrderType;
         }

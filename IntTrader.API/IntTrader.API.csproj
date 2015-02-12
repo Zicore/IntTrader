@@ -71,6 +71,7 @@
     <Compile Include="Converter\DecimalConverter.cs" />
     <Compile Include="Event\CreateOrderEventArgs.cs" />
     <Compile Include="Event\RequestEventArgs.cs" />
+    <Compile Include="Exceptions\ApiFunctionNotSupported.cs" />
     <Compile Include="Exceptions\CurrencyNotSupported.cs" />
     <Compile Include="Exceptions\PairNotSupportedException.cs" />
     <Compile Include="Base\Transform\IBalance.cs" />

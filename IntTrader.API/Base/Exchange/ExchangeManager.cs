@@ -4,6 +4,7 @@ using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Settings;
 using IntTrader.API.Event;
+using NLog;
 using Zicore.Settings.Json;
 using Zicore.WPF.Base.Event;
 
@@ -15,6 +16,8 @@ namespace IntTrader.API.Base.Exchange
         {
 
         }
+
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         public static Dictionary<String, APIFunction> Commands { get; private set; }
         public static Dictionary<APIFunction, String> Functions { get; private set; }
@@ -88,6 +91,28 @@ namespace IntTrader.API.Base.Exchange
 
             Settings.SetKey(password);
             Settings.Load(SettingsBase.ApplicationName, SettingsBase.FileName);
+
+            Log.Info("Settings Loaded");
+
+            foreach (var e in Exchanges)
+            {
+                if (e.VerifyAPI())
+                {
+                    Log.Info("{0} Authenticated API ready!", e.Name);
+                }
+
+                foreach (var function in Commands.Values)
+                {
+                    if (e.IsAvailable(function))
+                    {
+                        Log.Info("{0}/{1}", e.Name, function);
+                    }
+                    else
+                    {
+                        Log.Info("{0}/{1} **NOT available**", e.Name, function);
+                    }
+                }
+            }
         }
 
         public void ChangePassword(String password)

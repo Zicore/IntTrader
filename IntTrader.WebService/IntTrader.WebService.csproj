@@ -48,9 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\Request\RequestService.cs" />
+    <Compile Include="Base\Request\RequestCommand.cs" />
     <Compile Include="Exceptions\ExchangeNotSupportedException.cs" />
     <Compile Include="Base\Exchange\ExchangeService.cs" />
-    <Compile Include="Base\Request\ExchangeCollection.cs" />
+    <Compile Include="Base\Exchange\ExchangeCollection.cs" />
     <Compile Include="Base\WebBroker.cs" />
     <Compile Include="Exceptions\ArgumentRequiredException.cs" />
     <Compile Include="Exceptions\CommandNotSupportedException.cs" />
