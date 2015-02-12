@@ -12,7 +12,7 @@ namespace IntTrader.Web
         private static readonly string RootPath;
         static RootPathProvider()
         {
-            RootPath =  AppDomain.CurrentDomain.BaseDirectory;
+            RootPath = @"C:\dev\cs\IntTrader.Web\IntTrader.Web";
         }
         public string GetRootPath()
         {

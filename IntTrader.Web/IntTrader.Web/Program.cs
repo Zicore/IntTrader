@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System.Globalization;
+using System.Security.Cryptography;
+using System.Threading;
 using IntTrader.API.Base.Exchange;
 using IntTrader.WebService.Base;
 using Microsoft.Owin.Hosting;

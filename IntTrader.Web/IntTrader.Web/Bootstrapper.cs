@@ -18,23 +18,22 @@ namespace IntTrader.Web
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)
         {
             base.ApplicationStartup(container, pipelines);
-            this.Conventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("content/scripts"));
-            CookieBasedSessions.Enable(pipelines);
+            StaticConfiguration.Caching.EnableRuntimeViewUpdates = true;
         }
 
         protected override void ConfigureConventions(NancyConventions nancyConventions)
         {
             base.ConfigureConventions(nancyConventions);
             nancyConventions.StaticContentsConventions.Clear();
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("content/css", "/content/css"));
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("content/scripts", "/content/scripts"));
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("content/img", "/content/img"));
-            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("content/fonts", "/content/fonts"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("content"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("fonts"));
+            nancyConventions.StaticContentsConventions.Add(StaticContentConventionBuilder.AddDirectory("scripts"));
         }
 
         protected override IRootPathProvider RootPathProvider
         {
             get { return new RootPathProvider(); }
         }
+
     }
 }
