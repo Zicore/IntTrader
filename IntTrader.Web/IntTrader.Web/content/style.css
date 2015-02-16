@@ -6,12 +6,18 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  background: black;
+  color: #E6E6E6;
 }
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   /* Set the fixed height of the footer here */
-  height: 60px;
-  background-color: #808080;
+  height: 40px;
+  background-color: #222222;
+}
+
+.blue {
+    color: #44BBFF;
 }

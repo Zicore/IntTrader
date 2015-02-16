@@ -14,6 +14,7 @@ namespace IntTrader.Web.Model
 
         }
 
+        public String Id { get; set; }
         public String Name { get; set; }
         public String Pair { get; set; }
 

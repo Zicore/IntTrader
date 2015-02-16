@@ -20,7 +20,7 @@ namespace IntTrader.API.Base.Request
         {
             T result = null;
 
-            if (!String.IsNullOrEmpty(responseData.Value))
+            if (!String.IsNullOrEmpty(responseData.Value) && responseData.Exception == null)
             {
                 result = JsonConvert.DeserializeObject<T>(responseData.Value);
             }

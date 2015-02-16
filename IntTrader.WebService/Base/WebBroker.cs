@@ -105,5 +105,17 @@ namespace IntTrader.WebService.Base
 
             return RequestCollection.Execute(exchange, func, args);
         }
+
+        public PairBase GetPair(String exchange, String pair)
+        {
+            exchange = exchange.ToLower();
+            pair = pair.ToLower();
+
+            if (!Exchanges.Items.ContainsKey(exchange))
+                throw new ExchangeNotSupportedException(exchange);
+
+            var ex = Exchanges.Items[exchange];
+            return ex.PairManager.GetPair(pair);
+        }
     }
 }

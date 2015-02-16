@@ -36,6 +36,7 @@ namespace IntTrader.Web
             {
                 DashboardModel.Items.Add(new ExchangeModel
                 {
+                    Id = exchange.Value.Name.ToLower(),
                     Name = exchange.Value.Name,
                     Pair = exchange.Value.DefaultPair.Key
                 });

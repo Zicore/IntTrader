@@ -1,15 +1,17 @@
 ﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IntTrader.Web.Model.ExchangeModel>
 
-<div class="col-xs-6 col-sm-3 placeholder">
-    <h4>@Model.Name</h4>
-    <div class="text-muted" id="ticker-@Model.Name">0</div>
-    <table class="trades" id="trades-@Model.Name"></table>
+<div class="col-xs-4 col-sm-2 placeholder">
+    <h3 class="blue">@Model.Name</h3>
+    <div class="modal-title" id="ticker-@Model.Id">0</div>
+    <div class="center-block">
+        <table class="trades" id="trades-@Model.Id"></table>
+    </div>
 </div>
 
 <script type="text/javascript">
     
     $(document).ready(function () {
-        var exchange = new Exchange("@Model.Name", "@Model.Pair");
+        var exchange = new Exchange("@Model.Id", "@Model.Pair");
     });
 
 </script>

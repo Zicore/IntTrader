@@ -11,7 +11,7 @@ namespace IntTrader.API.Exchange.Bitfinex.Request
             RequestUri = "/v1/trades/" + pair.Name;
         }
 
-        private int _limit = 50;
+        private int _limit = 200;
         private String _timestamp;
 
         [JsonProperty("limit_trades")]

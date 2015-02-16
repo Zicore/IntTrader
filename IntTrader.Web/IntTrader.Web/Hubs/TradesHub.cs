@@ -17,7 +17,7 @@ namespace IntTrader.Web.Hubs
             var command = ExchangeManager.Functions[APIFunction.RequestTrades];
             var result = WebService.Broker.Execute(exchange, command, pair) as TradesModel;
 
-            if (result != null) Clients.Caller.update(exchange, result.Items);
+            if (result != null) Clients.Caller.update(exchange, result.Items.Take(40));
         }
     }
 }

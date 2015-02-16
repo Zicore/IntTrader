@@ -18,6 +18,8 @@ Exchange = (function() {
 
   tradesHub = $.connection.tradesHub;
 
+  Exchange._trades = [];
+
   Exchange.prototype.connectHubs = function() {
     var _this = this;
     return $.connection.hub.start().done(function() {
