@@ -150,6 +150,14 @@ namespace IntTrader.API.Base.Exchange.Base
             ExchangeManager = exchangeManager;
         }
 
+        public virtual PairBase DefaultPair
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public virtual PairBase ConvertPair(PairBase pair)
         {
             return PairManager.GetPair(pair.Key);

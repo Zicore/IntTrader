@@ -134,7 +134,7 @@ namespace IntTrader.ViewModel
                 OrderNotificationWindow = new OrderNotificationWindow { DataContext = OrderNotificationWindowViewModel };
 
 
-                ExchangeLoader.LoadExchanges(ExchangeManager);
+                ExchangeLoader.LoadExchanges(AppDomain.CurrentDomain.BaseDirectory, ExchangeManager);
 
                 // Exchanges
                 foreach (var exchangeBase in ExchangeManager.Exchanges)

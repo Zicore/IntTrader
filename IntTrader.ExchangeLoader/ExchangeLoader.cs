@@ -14,11 +14,11 @@ namespace IntTrader.API.ExchangeLoader
         private static bool _pluginsLoaded = false;
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-        public static void LoadExchanges(ExchangeManager exchangeManager)
+        public static void LoadExchanges(String basePath, ExchangeManager exchangeManager)
         {
             var lookupPaths = new string[]
                 {
-                    AppDomain.CurrentDomain.BaseDirectory,
+                    basePath,
                     Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Exchanges"),
                 };
             foreach (var lookupPath in lookupPaths)

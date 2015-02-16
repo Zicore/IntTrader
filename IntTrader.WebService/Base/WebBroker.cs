@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using IntTrader.API.Base.Attributes;
@@ -21,12 +22,12 @@ namespace IntTrader.WebService.Base
     {
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-        public WebBroker()
+        public WebBroker(String basePath)
         {
             Exchanges = new ExchangeCollection();
             RequestCollection = new RequestService();
             ExchangeManager = new ExchangeManager();
-            Initialize();
+            Initialize(basePath);
         }
 
         public ExchangeManager ExchangeManager { get; set; }
@@ -39,14 +40,15 @@ namespace IntTrader.WebService.Base
         //RequestBalances,
         //CancelOrder,
 
-        public void Initialize()
+        public void Initialize(String basePath)
         {
-            ExchangeLoader.LoadExchanges(ExchangeManager);
+            ExchangeLoader.LoadExchanges(basePath, ExchangeManager);
 
             foreach (var e in ExchangeManager.Exchanges)
             {
                 Exchanges.Add(e);
 
+                RequestCollection.Add(e, APIFunction.RequestTrades, ExchangeService.RequestTrades);
                 RequestCollection.Add(e, APIFunction.RequestTicker, ExchangeService.RequestTicker);
                 RequestCollection.Add(e, APIFunction.RequestOrderBook, ExchangeService.RequestOrderBook);
                 RequestCollection.Add(e, APIFunction.RequestOpenOrders, ExchangeService.RequestOpenOrders);
@@ -76,6 +78,9 @@ namespace IntTrader.WebService.Base
 
         public ResponseModelBase Execute(String exchange, String command, params object[] args)
         {
+            exchange = exchange.ToLower();
+            command = command.ToLower();
+
             if (!Exchanges.Items.ContainsKey(exchange))
                 throw new ExchangeNotSupportedException(exchange);
 
@@ -100,6 +105,5 @@ namespace IntTrader.WebService.Base
 
             return RequestCollection.Execute(exchange, func, args);
         }
-
     }
 }

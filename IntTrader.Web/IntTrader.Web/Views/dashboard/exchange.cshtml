@@ -1,5 +1,15 @@
-﻿<div class="col-xs-6 col-sm-3 placeholder">
-    <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-    <h4>Label</h4>
-    <span class="text-muted">Something else</span>
+﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IntTrader.Web.Model.ExchangeModel>
+
+<div class="col-xs-6 col-sm-3 placeholder">
+    <h4>@Model.Name</h4>
+    <div class="text-muted" id="ticker-@Model.Name">0</div>
+    <table class="trades" id="trades-@Model.Name"></table>
 </div>
+
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+        var exchange = new Exchange("@Model.Name", "@Model.Pair");
+    });
+
+</script>

@@ -103,3 +103,21 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+td {
+    padding-left: 8px;
+}
+
+.trades {
+    text-align: left;
+    font-family: consolas;
+    font-size: 12px;
+}
+
+.buy {
+    color: green;
+}
+
+.sell {
+    color: red;
+}

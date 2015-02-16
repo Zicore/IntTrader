@@ -20,17 +20,12 @@ namespace IntTrader.Web.Hubs
 
         }
 
-        private void Update(object state)
-        {
-            RequestTicker("bitfinex", "btcusd");
-        }
-
         public void RequestTicker(String exchange, String pair)
         {
             var command = ExchangeManager.Functions[APIFunction.RequestTicker];
             var result = WebService.Broker.Execute(exchange, command, pair) as TickerModel;
 
-            if (result != null) Clients.All.updateTicker(result.LastPrice);
+            if (result != null) Clients.Caller.update(exchange, result.LastPrice);
         }
     }
 }

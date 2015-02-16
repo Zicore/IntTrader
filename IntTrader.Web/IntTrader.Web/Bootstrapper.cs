@@ -12,7 +12,7 @@ namespace IntTrader.Web
     {
         public Bootstrapper()
         {
-
+            //WebService.Initialize();
         }
 
         protected override void ApplicationStartup(TinyIoCContainer container, IPipelines pipelines)

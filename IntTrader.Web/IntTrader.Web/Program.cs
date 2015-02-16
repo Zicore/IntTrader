@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Security.Cryptography;
 using System.Threading;
 using IntTrader.API.Base.Exchange;
@@ -8,19 +9,11 @@ using Zicore.Security.Cryptography;
 
 namespace IntTrader.Web
 {
-    using System;
-    //using Nancy.Hosting.Self;
-
     class Program
     {
         static void Main(string[] args)
         {
             var url = "http://+:80";
-
-            //Console.WriteLine("Enter your password");
-            var hash = "7bc650cf25f355aed4e9704d638c9c1b10cf8c4effe9232c896b159eb5d71755";
-
-            WebService.LoadExchangeSettings(hash);
 
             using (WebApp.Start<Startup>(url))
             {

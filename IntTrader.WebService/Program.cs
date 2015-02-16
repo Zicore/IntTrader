@@ -20,7 +20,7 @@ namespace IntTrader.WebService
         public static void Main(String[] args)
         {
             Log.Error("Starting {0}", Assembly.GetExecutingAssembly().GetName().Name);
-            WebBroker broker = new WebBroker();
+            WebBroker broker = new WebBroker(AppDomain.CurrentDomain.BaseDirectory);
 
 
             var first = broker.ExchangeManager.Exchanges.First();

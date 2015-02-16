@@ -19,6 +19,11 @@ namespace IntTrader.API.Base.Model
             set { _timestamp = value; }
         }
 
+        public String TimestampString
+        {
+            get { return Timestamp.ToString("HH:mm:ss"); }
+        }
+
         public string OrderId
         {
             get { return _orderId; }

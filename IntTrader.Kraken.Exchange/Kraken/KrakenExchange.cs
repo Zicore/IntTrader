@@ -29,6 +29,7 @@ namespace IntTrader.API.Exchange.Kraken
             PublicFunctions.Add(APIFunction.RequestTicker);
             PublicFunctions.Add(APIFunction.RequestTrades);
 
+            AvailableFunctions.Add(APIFunction.RequestTrades);
             AvailableFunctions.Add(APIFunction.RequestTicker);
             AvailableFunctions.Add(APIFunction.RequestOrderBook);
             AvailableFunctions.Add(APIFunction.RequestBalances);
@@ -72,6 +73,11 @@ namespace IntTrader.API.Exchange.Kraken
         public static readonly OrderType OrderTrailingStopLimit = new OrderType("trailing-stop-limit", "trailing-stop-limit");
 
         public static readonly OrderType OrderStopLossAndLimit = new OrderType("stop-loss-and-limit", "stop-loss-and-limit");
+
+        public override PairBase DefaultPair
+        {
+            get { return PairManager.GetPair(PairBase.BTCEUR); }
+        }
 
         public override TickerModel RequestTicker(PairBase pair)
         {

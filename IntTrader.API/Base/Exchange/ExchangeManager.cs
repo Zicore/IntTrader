@@ -27,6 +27,7 @@ namespace IntTrader.API.Base.Exchange
             Functions = new Dictionary<APIFunction, String>
             {
                 {APIFunction.RequestTicker    ,"ticker"     },
+                {APIFunction.RequestTrades    ,"trades"     },
                 {APIFunction.RequestOrderBook ,"orderbook"   },
                 {APIFunction.RequestOpenOrders,"orders"      },
                 {APIFunction.RequestNewOrder  ,"neworder"    },
@@ -36,6 +37,7 @@ namespace IntTrader.API.Base.Exchange
             Commands = new Dictionary<String, APIFunction>
             {
                 {"ticker"     ,APIFunction.RequestTicker    },
+                {"trades"     ,APIFunction.RequestTrades    },
                 {"orderbook"  ,APIFunction.RequestOrderBook  },
                 {"orders"     ,APIFunction.RequestOpenOrders },
                 {"neworder"   ,APIFunction.RequestNewOrder   },

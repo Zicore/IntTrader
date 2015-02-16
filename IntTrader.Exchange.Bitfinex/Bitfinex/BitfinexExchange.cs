@@ -81,6 +81,11 @@ namespace IntTrader.API.Exchange.Bitfinex
             }
         }
 
+        public override PairBase DefaultPair
+        {
+            get { return PairManager.GetPair(PairBase.BTCUSD); }
+        }
+
         // --------------------------------------------------------------------
 
         public override OrderBookModel RequestOrderBook(PairBase symbol)
