@@ -27,11 +27,11 @@ namespace IntTrader.Web.Hubs
 
             exchange = exchange.ToLower();
 
-            var pairBase = WebService.Broker.GetPair(exchange,pair);
+            var pairBase = WebService.Broker.GetPair(exchange, pair);
 
             var result = WebService.Broker.Execute(exchange, command, pair) as TickerModel;
 
-            if (result != null) Clients.Caller.update(exchange, String.Format("{0} {1}", result.LastPrice, pairBase.RightCurrency.Symbol));
+            if (result != null) Clients.Caller.update(exchange, new { lastPrice = result.LastPrice, Pair = pairBase });
         }
     }
 }

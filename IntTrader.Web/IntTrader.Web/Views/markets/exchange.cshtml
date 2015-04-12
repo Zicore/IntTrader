@@ -1,0 +1,45 @@
+﻿@using IntTrader.API.Currency;
+@using IntTrader.Web
+@using IntTrader.WebService.Base
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IntTrader.Web.Model.ExchangeModel>
+<div class="col-xs-4 col-sm-2 placeholder">
+    
+    <h3 class="blue">@Model.Name</h3>
+    <div class="modal-title" id="ticker-@Model.Id">0</div>
+    
+      <!-- Default panel contents -->
+      <div class="panel-heading">Balance</div>
+      <!-- Table -->
+      <table class="table" id="balance-@Model.Id">
+      </table>
+
+    <form class="form-inline" role="form" method="POST">
+        <div class="form-group">
+            <input type="number" step="0.00001" class="form-control" id="amount-@Model.Id" name="Amount" placeholder="amount" value="0">
+        </div>
+        <div class="form-group">
+            <input type="number" step="0.00001" class="form-control" id="price-@Model.Id" name="Price" placeholder="price" value="0">
+        </div>
+        <button type="submit" class="btn btn-default">Buy</button>
+        <button type="submit" class="btn btn-default">Sell</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var exchange = new Exchange("@Model.Id", "@Model.Pair.Key");
+        exchange.updatePrice(function(exchange,result) {
+            $('#ticker-' + exchange).text(result.lastPrice + " " + result.Pair.RightCurrency.Symbol);
+            $('#price-' + exchange).val(result.lastPrice);
+        });
+        exchange.updateBalance(function (exchange, result) {
+            $.each(result.Items, function (key, value) {
+                if (value.Available > 0){
+                    $('#balance-' + exchange).append("<tr><td> " + value.Currency.Name + " (" + value.Currency.Symbol + ")" + "</td><td>" + value.Available + "</td></tr>");
+                }
+            });
+        });
+    });
+
+</script>

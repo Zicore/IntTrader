@@ -124,10 +124,14 @@ td {
     padding: 3px;
 }
 
+.modal-title {
+    font-size: 18px;
+}
+
 .buy{
-    color: #55AA33;
+    color: #66CC66;
 }
 
 .sell{
-    color: #CC4422;
+    color: #CC5533;
 }

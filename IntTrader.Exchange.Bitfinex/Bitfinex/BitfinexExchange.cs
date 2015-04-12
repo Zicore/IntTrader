@@ -126,7 +126,7 @@ namespace IntTrader.API.Exchange.Bitfinex
 
         public override BalanceModel RequestBalances()
         {
-            return new Balance(this).Request<BalanceResponse>().Transform();
+            return new Balance(this).Request<BalanceResponse>().Transform(this);
         }
 
         public override CancelOrderModel CancelOrder(CancelOrderRequestBase orderCancelRequest)

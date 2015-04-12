@@ -1,22 +1,19 @@
-var Exchange,
-  __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+var Exchange;
 
 Exchange = (function() {
-  var tickerHub, tradesHub;
+  var balanceHub, tickerHub, tradesHub;
 
   function Exchange(name, pair) {
     this.name = name;
     this.pair = pair;
-    this.appendTrade = __bind(this.appendTrade, this);
-
     this.connectHubs();
-    this.updateTicker();
-    this.updateTrades();
   }
 
   tickerHub = $.connection.tickerHub;
 
   tradesHub = $.connection.tradesHub;
+
+  balanceHub = $.connection.balanceHub;
 
   Exchange._trades = [];
 
@@ -24,7 +21,8 @@ Exchange = (function() {
     var _this = this;
     return $.connection.hub.start().done(function() {
       tickerHub.server.requestTicker(_this.name, _this.pair);
-      return tradesHub.server.requestTrades(_this.name, _this.pair);
+      tradesHub.server.requestTrades(_this.name, _this.pair);
+      return balanceHub.server.requestBalance(_this.name, _this.pair);
     });
   };
 
@@ -35,26 +33,25 @@ Exchange = (function() {
     };
   };
 
-  Exchange.prototype.updateTrades = function() {
+  Exchange.prototype.updatePrice = function(x) {
     var _this = this;
-    return tradesHub.client.update = function(exchange, items) {
-      var i, _i, _len;
-      for (_i = 0, _len = items.length; _i < _len; _i++) {
-        i = items[_i];
-        _this.appendTrade(exchange, i);
-      }
-      return void 0;
+    return tickerHub.client.update = function(exchange, price) {
+      return x(exchange, price);
     };
   };
 
-  Exchange.prototype.appendTrade = function(exchange, i) {
-    var c;
-    if (i.Side.Value === 'sell') {
-      c = 'sell';
-    } else {
-      c = 'buy';
-    }
-    return $('#trades-' + exchange).append("<tr><td>" + i.TimestampString + "</td><td class='" + c + "'>" + i.Price + "</td><td>" + i.Amount + "</td></tr>");
+  Exchange.prototype.updateBalance = function(x) {
+    var _this = this;
+    return balanceHub.client.update = function(exchange, result) {
+      return x(exchange, result);
+    };
+  };
+
+  Exchange.prototype.updateTrades = function(x) {
+    var _this = this;
+    return tradesHub.client.update = function(exchange, items) {
+      return x(exchange, items);
+    };
   };
 
   return Exchange;

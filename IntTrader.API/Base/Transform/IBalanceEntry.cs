@@ -1,9 +1,10 @@
-﻿using IntTrader.API.Base.Model;
+﻿using IntTrader.API.Base.Exchange.Base;
+using IntTrader.API.Base.Model;
 
 namespace IntTrader.API.Base.Transform
 {
     public interface IBalanceEntry
     {
-        BalanceEntryModel Transform();
+        BalanceEntryModel Transform(ExchangeBase exchange);
     }
 }

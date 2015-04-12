@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Transform;
 using Newtonsoft.Json;
@@ -18,11 +19,11 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
             set { _items = value; }
         }
 
-        public BalanceModel Transform()
+        public BalanceModel Transform(ExchangeBase exchange)
         {
             var list = new List<BalanceEntryModel>();
 
-            Items.ForEach(x => list.Add(x.Transform()));
+            Items.ForEach(x => list.Add(x.Transform(exchange)));
             return new BalanceModel
             {
                 Items = list

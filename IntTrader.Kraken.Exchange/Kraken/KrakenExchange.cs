@@ -95,7 +95,7 @@ namespace IntTrader.API.Exchange.Kraken
         public override BalanceModel RequestBalances()
         {
             var b = new BalanceRequest(this);
-            var model = b.Request<BalanceResponse>().Transform();
+            var model = b.Request<BalanceResponse>().Transform(this);
             return model;
         }
 

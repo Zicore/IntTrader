@@ -13,6 +13,7 @@ namespace IntTrader.Web
     {
         static void Main(string[] args)
         {
+
             var url = "http://+:80";
 
             using (WebApp.Start<Startup>(url))

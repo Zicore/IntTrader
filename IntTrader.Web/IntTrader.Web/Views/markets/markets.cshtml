@@ -1,0 +1,12 @@
+﻿@using IntTrader.API.Currency;
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IntTrader.Web.Model.ExchangeModel>
+<div class="col-sm-8 col-sm-offset-3 col-md-11 col-md-offset-1 main">
+    <h3 class="page-header">Market</h3>
+
+    <div class="row placeholders">
+        
+        @Html.Partial("markets/exchange", Model)
+
+    </div>
+
+</div>

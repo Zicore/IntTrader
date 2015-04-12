@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using IntTrader.API.Base.Exchange;
+using IntTrader.API.Base.Exchange.Base;
 using IntTrader.Web.Model;
 using IntTrader.WebService.Base;
 
@@ -34,13 +35,18 @@ namespace IntTrader.Web
         {
             foreach (var exchange in Broker.Exchanges.Items)
             {
-                DashboardModel.Items.Add(new ExchangeModel
-                {
-                    Id = exchange.Value.Name.ToLower(),
-                    Name = exchange.Value.Name,
-                    Pair = exchange.Value.DefaultPair.Key
-                });
+                DashboardModel.Items.Add(CreateExchangeModel(exchange.Value));
             }
+        }
+
+        public static ExchangeModel CreateExchangeModel(ExchangeBase exchange)
+        {
+            return new ExchangeModel
+            {
+                Id = exchange.Name.ToLower(),
+                Name = exchange.Name,
+                Pair = exchange.DefaultPair
+            };
         }
 
         public static string GetBasePath()

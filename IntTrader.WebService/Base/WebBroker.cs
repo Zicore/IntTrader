@@ -106,6 +106,17 @@ namespace IntTrader.WebService.Base
             return RequestCollection.Execute(exchange, func, args);
         }
 
+        public ExchangeBase GetExchange(String exchange)
+        {
+            exchange = exchange.ToLower();
+
+            if (!Exchanges.Items.ContainsKey(exchange))
+                throw new ExchangeNotSupportedException(exchange);
+
+            var ex = Exchanges.Items[exchange];
+            return ex;
+        }
+
         public PairBase GetPair(String exchange, String pair)
         {
             exchange = exchange.ToLower();
@@ -116,6 +127,18 @@ namespace IntTrader.WebService.Base
 
             var ex = Exchanges.Items[exchange];
             return ex.PairManager.GetPair(pair);
+        }
+
+        public CurrencyBase GetCurrency(String exchange, String currencyKey)
+        {
+            exchange = exchange.ToLower();
+            currencyKey = currencyKey.ToLower();
+
+            if (!Exchanges.Items.ContainsKey(exchange))
+                throw new ExchangeNotSupportedException(exchange);
+
+            var ex = Exchanges.Items[exchange];
+            return ex.PairManager.GetCurrency(currencyKey);
         }
     }
 }

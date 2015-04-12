@@ -21,3 +21,13 @@ body {
 .blue {
     color: #44BBFF;
 }
+
+.form-group {
+    margin: 4px;
+}
+
+.btn-default {
+    margin: 3px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}

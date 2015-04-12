@@ -1,4 +1,5 @@
 ﻿using System;
+using IntTrader.API.Currency;
 
 namespace IntTrader.API.Base.Model
 {
@@ -8,6 +9,7 @@ namespace IntTrader.API.Base.Model
         private String _walletType;
         private decimal _amount;
         private decimal _available;
+        private CurrencyBase _currency;
 
         public string CurrencyKey
         {
@@ -31,6 +33,12 @@ namespace IntTrader.API.Base.Model
         {
             get { return _available; }
             set { _available = value; }
+        }
+
+        public CurrencyBase Currency
+        {
+            get { return _currency; }
+            set { _currency = value; }
         }
     }
 }

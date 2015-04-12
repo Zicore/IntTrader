@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Transform;
 using Newtonsoft.Json;
@@ -19,7 +20,7 @@ namespace IntTrader.API.Exchange.Kraken.Response
             set { _balanceEntries = value; }
         }
 
-        public BalanceModel Transform()
+        public BalanceModel Transform(ExchangeBase exchange)
         {
             var m = new BalanceModel();
             foreach (var b in BalanceEntries)
@@ -28,7 +29,8 @@ namespace IntTrader.API.Exchange.Kraken.Response
                     {
                         CurrencyKey = b.Currency,
                         Amount = b.Value,
-                        Available = b.Value
+                        Available = b.Value,
+                        Currency = exchange.PairManager.GetCurrency(b.Currency)
                     });
             }
             return m;

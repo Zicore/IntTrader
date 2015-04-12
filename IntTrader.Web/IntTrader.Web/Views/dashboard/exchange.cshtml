@@ -1,7 +1,8 @@
-﻿@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IntTrader.Web.Model.ExchangeModel>
+﻿@using IntTrader.API;
+@inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IntTrader.Web.Model.ExchangeModel>
 
 <div class="col-xs-4 col-sm-2 placeholder">
-    <h3 class="blue">@Model.Name</h3>
+    <h3 class="blue"><a href="/markets/@Model.Name.ToLower()">@Model.Name</a></h3>
     <div class="modal-title" id="ticker-@Model.Id">0</div>
     <div class="center-block">
         <table class="trades" id="trades-@Model.Id"></table>
@@ -11,7 +12,25 @@
 <script type="text/javascript">
     
     $(document).ready(function () {
-        var exchange = new Exchange("@Model.Id", "@Model.Pair");
+        var exchange = new Exchange("@Model.Id", "@Model.Pair.Key");
+        
+        exchange.updatePrice(function (exchange, result) {
+            $('#ticker-' + exchange).text(result.lastPrice + " " + result.Pair.RightCurrency.Symbol);
+            $('#price-' + exchange).val(result.lastPrice);
+        });
+
+        exchange.updateTrades(function(exchange,items) {
+            $.each(items, function (key, value) {
+                var c;
+                if (value.Side.Value === "sell") {
+                    c = "sell";
+                }
+                else {
+                    c = "buy";
+                }
+                $('#trades-' + exchange).append("<tr><td>" + value.TimestampString + "</td><td class='" + c + "'>" + value.Price + "</td><td>" + value.Amount + "</td></tr>");
+            });
+        });
     });
 
 </script>

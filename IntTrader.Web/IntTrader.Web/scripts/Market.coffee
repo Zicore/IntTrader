@@ -11,11 +11,10 @@
 class Exchange
     constructor: (@name, @pair) ->
         @connectHubs()
-        @updateTicker()
-        @updateTrades()
         
     tickerHub = $.connection.tickerHub
     tradesHub = $.connection.tradesHub
+    balanceHub = $.connection.balanceHub
     
     @_trades = [];
     
@@ -23,16 +22,20 @@ class Exchange
         $.connection.hub.start().done =>
             tickerHub.server.requestTicker @name, @pair
             tradesHub.server.requestTrades @name, @pair
+            balanceHub.server.requestBalance @name, @pair
     
     updateTicker: ->
         tickerHub.client.update = (exchange,price) =>
             $('#ticker-' + exchange).text(price)
             
-    updateTrades: ->
-        tradesHub.client.update = (exchange,items) =>            
-            @appendTrade(exchange,i) for i in items
-            undefined
+    updatePrice: (x) ->
+        tickerHub.client.update = (exchange,price) =>
+            x(exchange,price)
     
-    appendTrade: (exchange,i) =>
-        if i.Side.Value == 'sell' then c  = 'sell' else c = 'buy'        
-        $('#trades-' + exchange).append("<tr><td>#{i.TimestampString}</td><td class='#{c}'>#{i.Price}</td><td>#{i.Amount}</td></tr>")
+    updateBalance: (x) ->
+        balanceHub.client.update = (exchange,result) =>
+            x(exchange,result)
+
+    updateTrades: (x) ->
+        tradesHub.client.update = (exchange,items) =>            
+            x(exchange,items)

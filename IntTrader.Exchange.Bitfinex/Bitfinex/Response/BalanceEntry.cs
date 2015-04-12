@@ -1,4 +1,5 @@
 ﻿using System;
+using IntTrader.API.Base.Exchange.Base;
 using IntTrader.API.Base.Model;
 using IntTrader.API.Base.Transform;
 using Newtonsoft.Json;
@@ -46,14 +47,15 @@ namespace IntTrader.API.Exchange.Bitfinex.Response
             set { _available = value; }
         }
 
-        public BalanceEntryModel Transform()
+        public BalanceEntryModel Transform(ExchangeBase exchange)
         {
             return new BalanceEntryModel
                 {
                     Amount = Amount,
                     CurrencyKey = Currency,
                     Available = Available,
-                    WalletType = WalletType
+                    WalletType = WalletType,
+                    Currency = exchange.PairManager.GetCurrency(Currency)
                 };
         }
     }
