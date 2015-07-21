@@ -35,8 +35,8 @@ Exchange = (function() {
 
   Exchange.prototype.updatePrice = function(x) {
     var _this = this;
-    return tickerHub.client.update = function(exchange, price) {
-      return x(exchange, price);
+    return tickerHub.client.update = function(data) {
+        return x(data);
     };
   };
 
