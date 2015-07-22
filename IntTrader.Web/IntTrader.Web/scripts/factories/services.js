@@ -7,27 +7,33 @@ app.factory('backendHubProxy', ['$rootScope', 'backendServerUrl',
           var connection = $.hubConnection(backendServerUrl);
           var proxy = connection.createHubProxy(hubName);
 
-          connection.start().done(function () { });
+          var hubStart = null;
 
           var hub = {
-              on: function(eventName, callback) {
-                  proxy.on(eventName, function(result) {
-                      $rootScope.$apply(function() {
+              on: function (eventName, callback) {
+                  proxy.on(eventName, function (result) {
+                      $rootScope.$evalAsync(function () {
                           if (callback) {
                               callback(result);
                           }
                       });
                   });
               },
-              invoke: function(methodName, p1, p2, callback) {
-                  proxy.invoke(methodName, p1, p2)
-                      .done(function(result) {
-                          $rootScope.$apply(function() {
+              invoke: function (methodName, args, callback) {
+                  proxy.invoke.apply(proxy, $.merge([methodName], args))
+                      .done(function (result) {
+                          $rootScope.$evalAsync(function () {
                               if (callback) {
                                   callback(result);
                               }
                           });
                       });
+              },
+              start: function () {
+                  if (hubStart === null) {
+                      hubStart = connection.start();
+                  }
+                  return hubStart;
               }
           };
           return hub;

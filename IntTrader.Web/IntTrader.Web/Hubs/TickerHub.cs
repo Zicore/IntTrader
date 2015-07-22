@@ -28,20 +28,7 @@ namespace IntTrader.Web.Hubs
         {
 
         }
-
-        public static TickerModel GetData(String exchange, String pair)
-        {
-            var command = ExchangeManager.Functions[APIFunction.RequestTicker];
-
-            exchange = exchange.ToLower();
-
-            var pairBase = WebService.Broker.GetPair(exchange, pair);
-
-            var result = WebService.Broker.Execute(exchange, command, pair) as TickerModel;
-
-            return result;
-        }
-
+        
         public void RequestTicker(String exchange, String pair)
         {
             var command = ExchangeManager.Functions[APIFunction.RequestTicker];
@@ -56,13 +43,11 @@ namespace IntTrader.Web.Hubs
             {
                 BroadcastTicker(new { exchange, lastPrice = result.LastPrice, Pair = pairBase });
             }
-            //BroadcastTicker(new {exchange, lastPrice = result.LastPrice, Pair = pairBase});
-            //Clients.All.update(new {exchange, lastPrice = result.LastPrice, Pair = pairBase });
         }
 
         public void BroadcastTicker(dynamic model)
         {
-            if (model != null) Clients.All.update(model);
+            if (model != null) Clients.All.updateTicker(model);
         }
     }
 }

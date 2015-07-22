@@ -2,10 +2,10 @@
 @using IntTrader.Web
 @using IntTrader.WebService.Base
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IntTrader.Web.Model.ExchangeModel>
-<div class="col-xs-4 col-sm-2 placeholder">
+<div class="col-xs-4 col-sm-2 placeholder" ng-model="models.ticker" ng-controller="TickerController" data-exchange="@Model.Id" data-pair="@Model.Pair.Key">
     
     <h3 class="blue">@Model.Name</h3>
-    <div class="modal-title" id="ticker-@Model.Id">0</div>
+    <div class="modal-title" id="ticker-@Model.Id">{{models.ticker.lastPrice}}</div>
     
       <!-- Default panel contents -->
       <div class="panel-heading">Balance</div>

@@ -34,20 +34,20 @@ namespace IntTrader.Web
             var hub = GlobalHost.ConnectionManager.GetHubContext<TickerHub>();
 
 
-            while (true)
-            {
-                foreach (var exchangeBase in WebService.DashboardModel.Items)
-                {
+            //while (true)
+            //{
+            //    foreach (var exchangeBase in WebService.DashboardModel.Items)
+            //    {
                  
-                    var pairBase = WebService.Broker.GetPair(exchangeBase.Id, exchangeBase.Pair.Key);
+            //        var pairBase = WebService.Broker.GetPair(exchangeBase.Id, exchangeBase.Pair.Key);
 
-                    var data = TickerHub.GetData(exchangeBase.Id, exchangeBase.Pair.Key);
+            //        var data = TickerHub.GetData(exchangeBase.Id, exchangeBase.Pair.Key);
 
-                    hub.Clients.All.update(new { id = exchangeBase.Id, lastPrice = data.LastPrice, pair = pairBase });
+            //        hub.Clients.All.update(new { id = exchangeBase.Id, lastPrice = data.LastPrice, pair = pairBase });
 
-                }
-                Thread.Sleep(4000);
-            }
+            //    }
+            //    Thread.Sleep(4000);
+            //}
         }
 
         private static void UnhandledExceptionCallback(Exception exception)

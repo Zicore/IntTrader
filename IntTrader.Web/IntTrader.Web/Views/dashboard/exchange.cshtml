@@ -1,9 +1,9 @@
 ﻿@using IntTrader.API;
 @inherits Nancy.ViewEngines.Razor.NancyRazorViewBase<IntTrader.Web.Model.ExchangeModel>
 
-<div class="col-xs-4 col-sm-2 placeholder" ng-controller="ExchangeController" data-exchange="@Model.Id" data-pair="@Model.Pair.Key">
+<div class="col-xs-4 col-sm-2 placeholder" ng-model="models.ticker" ng-controller="TickerController" data-exchange="@Model.Id" data-pair="@Model.Pair.Key">
     <h3 class="blue"><a href="/markets/@Model.Name.ToLower()">@Model.Name</a></h3>
-    <div class="modal-title" ng-model="models.ticker">{{models.ticker.lastPrice}}</div>
+    <div class="modal-title" >{{models.ticker.lastPrice}}</div>
     <div class="center-block">
         <table class="trades" id="trades-@Model.Id"></table>
     </div>

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-app.controller('ExchangeController', ['$scope', 'backendHubProxy','$attrs',
+app.controller('TickerController', ['$scope', 'backendHubProxy','$attrs',
   function ($scope, backendHubProxy, $attrs) {
 
       console.log('trying to connect to service');
@@ -9,16 +9,17 @@ app.controller('ExchangeController', ['$scope', 'backendHubProxy','$attrs',
 
       $scope.tickerHub = tickerHub;
 
-      tickerHub.on('update', function(data) {
-          console.log($scope.exchange);
-          if (data.id === $attrs.exchange){
+      tickerHub.on('updateTicker', function (data) {
+          if (data.exchange === $attrs.exchange && data.Pair.Key === $attrs.pair) {
               $scope.models = {
                   ticker: data
               };
           }
       });
+
+      tickerHub.start().done(function () {
+          var args = [$attrs.exchange, $attrs.pair];
+          tickerHub.invoke('RequestTicker', args, function (data) { });
+      });
   }
 ]);
-
-// The $inject property of every controller (and pretty much every other type of object in Angular) needs to be a string array equal to the controllers arguments, only as strings
-//LandingPageController.$inject = ['$scope'];
