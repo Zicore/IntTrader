@@ -338,10 +338,6 @@
       <Project>{caf30234-6645-48e6-b0e7-aa7d23e0d434}</Project>
       <Name>IntTrader.API.ExchangeLoader</Name>
     </ProjectReference>
-    <ProjectReference Include="..\IntTrader.Kraken.Exchange\IntTrader.API.Kraken.Exchange.csproj">
-      <Project>{c5a21196-1b23-408a-bc32-a9219dfc4827}</Project>
-      <Name>IntTrader.API.Kraken.Exchange</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Zicore.Security\Zicore.Security.csproj">
       <Project>{48c98f71-2210-4806-8ed3-6aeed2729801}</Project>
       <Name>Zicore.Security</Name>
