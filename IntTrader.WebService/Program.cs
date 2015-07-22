@@ -31,7 +31,7 @@ namespace IntTrader.WebService
 
             //var result = broker.Actions.First(x => x.Action == "orders").Request(pair);
 
-            String exchange = "bitfinex";
+            //String exchange = "bitfinex";
 
             String line;
             do

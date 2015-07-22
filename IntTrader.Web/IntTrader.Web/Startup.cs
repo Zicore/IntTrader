@@ -14,7 +14,7 @@ namespace IntTrader.Web
     {
         public Startup()
         {
-            AppDomain.CurrentDomain.Load(typeof(TickerHub).Assembly.FullName);
+            //AppDomain.CurrentDomain.Load(typeof(TickerHub).Assembly.FullName);
         }
 
         public void Configuration(IAppBuilder app)

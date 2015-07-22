@@ -11,7 +11,6 @@ namespace IntTrader.API.ExchangeLoader
 {
     public static class ExchangeLoader
     {
-        private static bool _pluginsLoaded = false;
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         public static void LoadExchanges(String basePath, ExchangeManager exchangeManager)
