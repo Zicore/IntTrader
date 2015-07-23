@@ -103,9 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Hubs\BalanceHub.cs" />
-    <Compile Include="Hubs\TickerHub.cs" />
-    <Compile Include="Hubs\TradesHub.cs" />
+    <Compile Include="Hubs\ExchangeHub.cs" />
     <Compile Include="Model\DashboardModel.cs" />
     <Compile Include="Model\ExchangeModel.cs" />
     <Compile Include="Model\MarketModel.cs" />
@@ -267,7 +265,7 @@
     <Content Include="scripts\angular\angular-touch.min.js" />
     <Content Include="scripts\angular\angular.js" />
     <Content Include="scripts\angular\angular.min.js" />
-    <Content Include="scripts\controllers\TickerController.js" />
+    <Content Include="scripts\controllers\ExchangeController.js" />
     <Content Include="scripts\factories\services.js" />
     <Content Include="scripts\angular\i18n\angular-locale_aa-dj.js" />
     <Content Include="scripts\angular\i18n\angular-locale_aa-er.js" />

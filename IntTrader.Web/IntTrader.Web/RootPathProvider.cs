@@ -12,7 +12,7 @@ namespace IntTrader.Web
         private static readonly string RootPath;
         static RootPathProvider()
         {
-            RootPath = @"C:\dev\IntTrader\IntTrader.Web\IntTrader.Web";
+            RootPath = @"C:\dev\cs\Bitcoin\IntTrader\IntTrader.Web\IntTrader.Web";
         }
         public string GetRootPath()
         {

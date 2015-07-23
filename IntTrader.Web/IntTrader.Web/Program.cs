@@ -31,7 +31,7 @@ namespace IntTrader.Web
 
         public static void UpdateTicker()
         {
-            var hub = GlobalHost.ConnectionManager.GetHubContext<TickerHub>();
+            var hub = GlobalHost.ConnectionManager.GetHubContext<ExchangeHub>();
 
 
             //while (true)
